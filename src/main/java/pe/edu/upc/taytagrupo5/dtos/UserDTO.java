@@ -11,7 +11,7 @@ public class UserDTO {
 
     private String password;
 
-    private String addresses;
+    private String address;
 
     private String dni;
 
@@ -47,12 +47,12 @@ public class UserDTO {
         this.password = password;
     }
 
-    public String getAddresses() {
-        return addresses;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddresses(String addresses) {
-        this.addresses = addresses;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDni() {
