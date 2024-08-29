@@ -15,6 +15,8 @@ public class UserDTO {
 
     private String dni;
 
+    private RolDTO rol;
+
     public int getIdUser() {
         return idUser;
     }
@@ -61,5 +63,13 @@ public class UserDTO {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public RolDTO getRol() {
+        return rol;
+    }
+
+    public void setRol(RolDTO rol) {
+        this.rol = rol;
     }
 }
