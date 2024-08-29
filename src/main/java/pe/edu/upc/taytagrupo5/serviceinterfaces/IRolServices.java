@@ -12,7 +12,7 @@ public interface IRolServices {
 
     public void delete(int id);
 
-    public void update(Rol id_Rol);
+    public void update(Rol idRol);
 
     public List<String[]> quantityUserPerRol();
 

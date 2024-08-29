@@ -25,19 +25,21 @@ public class User {
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
-    //@Column(name = "TipoRol", nullable = false, length = 20)
-    //private String tipoRol;
+    @ManyToOne
+    @JoinColumn(name = "idRol")
+    private Rol rol;
 
     public User() {
     }
 
-    public User(int idUser, String fullName, String email, String password, String address, String dni) {
+    public User(int idUser, String fullName, String email, String password, String address, String dni, Rol rol) {
         this.idUser = idUser;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.address = address;
         this.dni = dni;
+        this.rol = rol;
     }
 
     public int getIdUser() {
@@ -86,5 +88,13 @@ public class User {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

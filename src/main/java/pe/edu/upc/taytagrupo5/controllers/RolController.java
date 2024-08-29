@@ -3,7 +3,6 @@ import jakarta.validation.constraints.Max;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.taytagrupo5.dtos.QuantityUserPerRolDTO;
 import pe.edu.upc.taytagrupo5.dtos.RolDTO;
 import pe.edu.upc.taytagrupo5.entities.Rol;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IRolServices;
@@ -46,20 +45,5 @@ public class RolController {
         Rol d = m.map(dto, Rol.class);
         rs.update(d);
     }
-
-    @GetMapping("/cantidadUsuariosPorRol")
-    public List<QuantityUserPerRolDTO> cantidadUsuariosPorRol(){
-        List<String[]> filaLista = rs.quantityUserPerRol();
-        List<QuantityUserPerRolDTO> dtoLista = new ArrayList<>();
-        for(String[] columna: filaLista){
-            QuantityUserPerRolDTO dto = new QuantityUserPerRolDTO();
-            dto.setNameR(columna[0]);
-            dto.setQuantity(Integer.parseInt(columna[1]));
-            dtoLista.add(dto);
-        }
-        return dtoLista;
-    }
-
-
 
 }

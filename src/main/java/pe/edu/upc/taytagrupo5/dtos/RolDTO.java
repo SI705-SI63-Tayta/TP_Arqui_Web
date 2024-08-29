@@ -1,25 +1,30 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
+import jakarta.persistence.*;
+import pe.edu.upc.taytagrupo5.entities.User;
+
+import java.util.List;
+
 public class RolDTO {
 
-    private  int id_Rol;
+    private  int idRol;
 
-    private String tipo_rol;
+    private String tipoRol;
 
-
-    public int getId_Rol() {
-        return id_Rol;
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setId_Rol(int id_Rol) {
-        this.id_Rol = id_Rol;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
-    public String getTipo_rol() {
-        return tipo_rol;
+    public String getTipoRol() {
+        return tipoRol;
     }
 
-    public void setTipo_rol(String tipo_rol) {
-        this.tipo_rol = tipo_rol;
+    public void setTipoRol(String tipoRol) {
+        this.tipoRol = tipoRol;
     }
+
 }

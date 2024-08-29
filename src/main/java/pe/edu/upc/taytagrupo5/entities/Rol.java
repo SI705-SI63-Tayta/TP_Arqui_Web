@@ -3,40 +3,52 @@ package pe.edu.upc.taytagrupo5.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Rol")
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id_Rol;
-
+    private  int idRol;
 
     @Column(name = "tipo_rol", nullable = false, length = 15)
-    private String tipo_rol;
+    private String tipoRol;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "idRol")
+    private List<User> users;
 
     public Rol() {
     }
 
-    public Rol(int id_Rol, String tipo_rol) {
-        this.id_Rol = id_Rol;
-        this.tipo_rol = tipo_rol;
+    public Rol(int idRol, String tipoRol, List<User> users) {
+        this.idRol = idRol;
+        this.tipoRol = tipoRol;
+        this.users = users;
     }
 
-
-    public int getId_Rol() {
-        return id_Rol;
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setId_Rol(int id_Rol) {
-        this.id_Rol = id_Rol;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
-    public String getTipo_rol() {
-        return tipo_rol;
+    public String getTipoRol() {
+        return tipoRol;
     }
 
-    public void setTipo_rol(String tipo_rol) {
-        this.tipo_rol = tipo_rol;
+    public void setTipoRol(String tipoRol) {
+        this.tipoRol = tipoRol;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
