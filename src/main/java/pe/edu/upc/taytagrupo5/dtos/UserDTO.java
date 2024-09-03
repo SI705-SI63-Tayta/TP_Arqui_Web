@@ -1,7 +1,5 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-import jakarta.persistence.Column;
-
 public class UserDTO {
     private int idUser;
 
