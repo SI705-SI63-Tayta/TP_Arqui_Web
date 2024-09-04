@@ -1,46 +1,19 @@
-package pe.edu.upc.taytagrupo5.entities;
+package pe.edu.upc.taytagrupo5.dtos;
 
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name="Users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private int idUser;
 
-    @Column(name = "fullName",nullable = false, length = 50)
     private String fullName;
 
-    @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 20)
     private String password;
 
-    @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
-    @ManyToOne
-    @JoinColumn(name = "idRol")
-    private Rol rol;
-
-    public User() {
-    }
-
-    public User(int idUser, String fullName, String email, String password, String address, String dni, Rol rol) {
-        this.idUser = idUser;
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.dni = dni;
-        this.rol = rol;
-    }
+    private RolDTO rol;
 
     public int getIdUser() {
         return idUser;
@@ -90,11 +63,11 @@ public class User {
         this.dni = dni;
     }
 
-    public Rol getRol() {
+    public RolDTO getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(RolDTO rol) {
         this.rol = rol;
     }
 }

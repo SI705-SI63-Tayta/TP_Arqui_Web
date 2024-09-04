@@ -1,0 +1,14 @@
+package pe.edu.upc.taytagrupo5.serviceinterfaces;
+
+import pe.edu.upc.taytagrupo5.entities.User;
+
+import java.util.List;
+
+public interface IUserService {
+    public void insert(User u);
+    public List<User> list();
+    public void delete(int idUser);
+    public User listId(int idUser);
+    public void update(User u);
+
+}
