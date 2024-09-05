@@ -3,8 +3,8 @@ package pe.edu.upc.taytagrupo5.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Notificaciones")
-public class Notifications {
+@Table(name = "Notifications")
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotification;
@@ -14,17 +14,17 @@ public class Notifications {
     @JoinColumn(name = "idUser")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "idRecipes")
-    private Recipes recipes;
+    @JoinColumn(name = "idRecipe")
+    private Recipe recipe;
 
-    public Notifications() {
+    public Notification() {
     }
 
-    public Notifications(int idNotification, String message, User user, Recipes recipes) {
+    public Notification(int idNotification, String message, User user, Recipe recipe) {
         this.idNotification = idNotification;
         this.message = message;
         this.user = user;
-        this.recipes = recipes;
+        this.recipe = recipe;
     }
 
     public int getIdNotification() {
@@ -51,11 +51,11 @@ public class Notifications {
         this.user = user;
     }
 
-    public Recipes getRecipes() {
-        return recipes;
+    public Recipe getRecipes() {
+        return recipe;
     }
 
-    public void setRecipes(Recipes recipes) {
-        this.recipes = recipes;
+    public void setRecipes(Recipe recipe) {
+        this.recipe = recipe;
     }
 }

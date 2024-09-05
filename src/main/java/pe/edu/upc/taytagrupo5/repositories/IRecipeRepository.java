@@ -2,9 +2,10 @@ package pe.edu.upc.taytagrupo5.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.taytagrupo5.entities.Notifications;
+import pe.edu.upc.taytagrupo5.entities.Recipe;
 
 @Repository
-public interface INotificationsRepository extends JpaRepository<Notifications, Integer> {
+public interface IRecipeRepository extends JpaRepository<Recipe, Integer> {
+
 
 }
