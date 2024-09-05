@@ -1,41 +1,51 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 import pe.edu.upc.taytagrupo5.entities.Appointment;
-import pe.edu.upc.taytagrupo5.entities.Recipes;
+import pe.edu.upc.taytagrupo5.entities.MedicalRecord;
+import pe.edu.upc.taytagrupo5.entities.Recipe;
 
 public class ClinicalHistoryDetailDTO {
 
-    private int id_detalle_historia;
+    private int idDetalleHistoria;
 
-    private Recipes recetas_receta_id;
+    private MedicalRecord medicalRecord;
 
-    private Appointment cita_cita_id;
+    private Recipe recipe;
+
+    private Appointment appointment;
 
     private String diagnostico;
 
-
-    public int getId_detalle_historia() {
-        return id_detalle_historia;
+    public int getIdDetalleHistoria() {
+        return idDetalleHistoria;
     }
 
-    public void setId_detalle_historia(int id_detalle_historia) {
-        this.id_detalle_historia = id_detalle_historia;
+    public void setIdDetalleHistoria(int idDetalleHistoria) {
+        this.idDetalleHistoria = idDetalleHistoria;
     }
 
-    public Recipes getRecetas_receta_id() {
-        return recetas_receta_id;
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
     }
 
-    public void setRecetas_receta_id(Recipes recetas_receta_id) {
-        this.recetas_receta_id = recetas_receta_id;
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
     }
 
-    public Appointment getCita_cita_id() {
-        return cita_cita_id;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setCita_cita_id(Appointment cita_cita_id) {
-        this.cita_cita_id = cita_cita_id;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
 
     public String getDiagnostico() {
