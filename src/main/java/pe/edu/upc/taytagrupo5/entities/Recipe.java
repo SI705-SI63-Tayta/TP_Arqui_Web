@@ -11,28 +11,33 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipe;
+
     @Column(name = "description", nullable = false,length = 100)
     private String description;
+
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
+
     @Column(name="end_date", nullable = false)
     private LocalDate endDate;
+
     @Column(name="state", nullable = false,length = 20)
     private String state;
 
     @OneToOne
     @JoinColumn(name="idAppointment")
-    private Appointment ap;
+    private Appointment appointment;
+
     public Recipe() {
     }
 
-    public Recipe(int idRecipe, String description, LocalDate startDate, LocalDate endDate, String state, Appointment ap) {
+    public Recipe(int idRecipe, String description, LocalDate startDate, LocalDate endDate, String state, Appointment appointment) {
         this.idRecipe = idRecipe;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
-        this.ap = ap;
+        this.appointment = appointment;
     }
 
     public int getIdRecipe() {
@@ -76,10 +81,10 @@ public class Recipe {
     }
 
     public Appointment getAp() {
-        return ap;
+        return appointment;
     }
 
     public void setAp(Appointment ap) {
-        this.ap = ap;
+        this.appointment = appointment;
     }
 }

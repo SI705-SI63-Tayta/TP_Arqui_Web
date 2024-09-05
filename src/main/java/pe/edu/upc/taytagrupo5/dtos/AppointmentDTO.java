@@ -1,23 +1,24 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import pe.edu.upc.taytagrupo5.entities.User;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AppointmentDTO {
 
     private int idAppointment;
 
-    private Date date;
+    private LocalDate date;
 
     private String reason;
 
     private String mode;
 
     private String description;
+
+    private User userCliente;
+
+    private User userPersonal;
 
     public int getIdAppointment() {
         return idAppointment;
@@ -27,11 +28,11 @@ public class AppointmentDTO {
         this.idAppointment = idAppointment;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -57,5 +58,21 @@ public class AppointmentDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUserCliente() {
+        return userCliente;
+    }
+
+    public void setUserCliente(User userCliente) {
+        this.userCliente = userCliente;
+    }
+
+    public User getUserPersonal() {
+        return userPersonal;
+    }
+
+    public void setUserPersonal(User userPersonal) {
+        this.userPersonal = userPersonal;
     }
 }
