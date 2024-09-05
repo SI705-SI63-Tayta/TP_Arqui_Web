@@ -7,10 +7,10 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="Recipes")
-public class Recipes {
+public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRecipes;
+    private int idRecipe;
     @Column(name = "description", nullable = false,length = 100)
     private String description;
     @Column(name = "start_date", nullable = false)
@@ -19,23 +19,28 @@ public class Recipes {
     private LocalDate endDate;
     @Column(name="state", nullable = false,length = 20)
     private String state;
-    public Recipes() {
+
+    @OneToOne
+    @JoinColumn(name="idAppointment")
+    private Appointment ap;
+    public Recipe() {
     }
 
-    public Recipes(int idRecipes, String description, LocalDate startDate, LocalDate endDate, String state) {
-        this.idRecipes = idRecipes;
+    public Recipe(int idRecipe, String description, LocalDate startDate, LocalDate endDate, String state, Appointment ap) {
+        this.idRecipe = idRecipe;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
+        this.ap = ap;
     }
 
-    public int getIdRecipes() {
-        return idRecipes;
+    public int getIdRecipe() {
+        return idRecipe;
     }
 
-    public void setIdRecipes(int idRecipes) {
-        this.idRecipes = idRecipes;
+    public void setIdRecipe(int idRecipe) {
+        this.idRecipe = idRecipe;
     }
 
     public String getDescription() {
@@ -68,5 +73,13 @@ public class Recipes {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Appointment getAp() {
+        return ap;
+    }
+
+    public void setAp(Appointment ap) {
+        this.ap = ap;
     }
 }

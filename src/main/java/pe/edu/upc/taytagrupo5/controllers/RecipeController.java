@@ -3,38 +3,38 @@ package pe.edu.upc.taytagrupo5.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.taytagrupo5.dtos.RecipesDTO;
-import pe.edu.upc.taytagrupo5.entities.Recipes;
-import pe.edu.upc.taytagrupo5.serviceinterfaces.IRecipesService;
+import pe.edu.upc.taytagrupo5.dtos.RecipeDTO;
+import pe.edu.upc.taytagrupo5.entities.Recipe;
+import pe.edu.upc.taytagrupo5.serviceinterfaces.IRecipeService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/recipes")
-public class RecipesController {
+public class RecipeController {
     @Autowired
-    private IRecipesService rs;
+    private IRecipeService rs;
 
     @PostMapping
-    public void registrar(@RequestBody RecipesDTO dto) {
+    public void registrar(@RequestBody RecipeDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recipes d = m.map(dto, Recipes.class);
+        Recipe d = m.map(dto, Recipe.class);
         rs.insert(d);
     }
 
     @GetMapping
-    public List<RecipesDTO> listar(){
+    public List<RecipeDTO> listar(){
         return rs.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
-            return m.map(x,RecipesDTO.class);
+            return m.map(x, RecipeDTO.class);
         }).collect(Collectors.toList());
     }
 
     @PutMapping
-    public void modificar(@RequestBody RecipesDTO dto) {
+    public void modificar(@RequestBody RecipeDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recipes d = m.map(dto, Recipes.class);
+        Recipe d = m.map(dto, Recipe.class);
         rs.update(d);
     }
 
@@ -43,9 +43,9 @@ public class RecipesController {
         rs.delete(id);
     }
     @GetMapping("/{id}")
-    public RecipesDTO listarId(@PathVariable("id") Integer id) {
+    public RecipeDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
-        RecipesDTO dto=m.map(rs.listId(id), RecipesDTO.class);
+        RecipeDTO dto=m.map(rs.listId(id), RecipeDTO.class);
         return dto;
     }
 
