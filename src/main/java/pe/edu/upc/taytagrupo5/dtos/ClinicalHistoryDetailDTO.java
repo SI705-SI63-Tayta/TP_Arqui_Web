@@ -3,7 +3,7 @@ package pe.edu.upc.taytagrupo5.dtos;
 import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.entities.Recipes;
 
-public class Clinical_History_DetailDTO {
+public class ClinicalHistoryDetailDTO {
 
     private int id_detalle_historia;
 

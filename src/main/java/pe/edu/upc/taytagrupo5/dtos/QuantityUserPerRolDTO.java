@@ -4,23 +4,23 @@ public class QuantityUserPerRolDTO {
 
 
 
-    private String nameR;
-    private int quantity;
+    private String nombreRol;
+    private int cantidad;
 
 
-    public String getNameR() {
-        return nameR;
+    public String getNombreRol() {
+        return nombreRol;
     }
 
-    public void setNameR(String nameR) {
-        this.nameR = nameR;
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }

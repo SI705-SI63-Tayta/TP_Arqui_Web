@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="Clinical_History_Detail")
-public class Clinical_History_Detail {
+public class ClinicalHistoryDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class Clinical_History_Detail {
     @Column(name = "diagnostico", nullable = false, length = 500)
     private String diagnostico;
 
-    public Clinical_History_Detail() {
+    public ClinicalHistoryDetail() {
     }
 
-    public Clinical_History_Detail(int id_detalle_historia, Recipes recetas_receta_id, Appointment cita_cita_id, String diagnostico) {
+    public ClinicalHistoryDetail(int id_detalle_historia, Recipes recetas_receta_id, Appointment cita_cita_id, String diagnostico) {
         this.id_detalle_historia = id_detalle_historia;
         this.recetas_receta_id = recetas_receta_id;
         this.cita_cita_id = cita_cita_id;
