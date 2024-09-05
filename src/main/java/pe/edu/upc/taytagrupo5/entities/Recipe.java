@@ -20,15 +20,19 @@ public class Recipe {
     @Column(name="state", nullable = false,length = 20)
     private String state;
 
+    @OneToOne
+    @JoinColumn(name="idAppointment")
+    private Appointment ap;
     public Recipe() {
     }
 
-    public Recipe(int idRecipe, String description, LocalDate startDate, LocalDate endDate, String state) {
+    public Recipe(int idRecipe, String description, LocalDate startDate, LocalDate endDate, String state, Appointment ap) {
         this.idRecipe = idRecipe;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = state;
+        this.ap = ap;
     }
 
     public int getIdRecipe() {
@@ -69,5 +73,13 @@ public class Recipe {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Appointment getAp() {
+        return ap;
+    }
+
+    public void setAp(Appointment ap) {
+        this.ap = ap;
     }
 }

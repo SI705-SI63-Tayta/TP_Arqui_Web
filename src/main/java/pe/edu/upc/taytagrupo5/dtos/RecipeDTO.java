@@ -1,5 +1,7 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
+import pe.edu.upc.taytagrupo5.entities.Appointment;
+
 import java.time.LocalDate;
 
 public class RecipeDTO {
@@ -8,6 +10,7 @@ public class RecipeDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private String state;
+    private Appointment ap;
 
     public int getIdRecipe() {
         return idRecipe;
@@ -47,5 +50,13 @@ public class RecipeDTO {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Appointment getAp() {
+        return ap;
+    }
+
+    public void setAp(Appointment ap) {
+        this.ap = ap;
     }
 }
