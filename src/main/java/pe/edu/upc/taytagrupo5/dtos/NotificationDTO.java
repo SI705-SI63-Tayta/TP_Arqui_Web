@@ -1,14 +1,14 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 
-import pe.edu.upc.taytagrupo5.entities.Recipes;
+import pe.edu.upc.taytagrupo5.entities.Recipe;
 import pe.edu.upc.taytagrupo5.entities.User;
 
-public class NotificationsDTO {
+public class NotificationDTO {
     private int idNotification;
     private String message;
     private User user;
-    private Recipes recipes;
+    private Recipe recipe;
 
     public int getIdNotification() {
         return idNotification;
@@ -34,11 +34,11 @@ public class NotificationsDTO {
         this.user = user;
     }
 
-    public Recipes getRecipes() {
-        return recipes;
+    public Recipe getRecipes() {
+        return recipe;
     }
 
-    public void setRecipes(Recipes recipes) {
-        this.recipes = recipes;
+    public void setRecipes(Recipe recipe) {
+        this.recipe = recipe;
     }
 }

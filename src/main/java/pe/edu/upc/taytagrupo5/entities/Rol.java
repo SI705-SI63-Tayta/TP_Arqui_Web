@@ -15,17 +15,12 @@ public class Rol {
     @Column(name = "tipo_rol", nullable = false, length = 15)
     private String tipoRol;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "idRol")
-    private List<User> users;
-
     public Rol() {
     }
 
-    public Rol(int idRol, String tipoRol, List<User> users) {
+    public Rol(int idRol, String tipoRol) {
         this.idRol = idRol;
         this.tipoRol = tipoRol;
-        this.users = users;
     }
 
     public int getIdRol() {
@@ -42,13 +37,5 @@ public class Rol {
 
     public void setTipoRol(String tipoRol) {
         this.tipoRol = tipoRol;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 }
