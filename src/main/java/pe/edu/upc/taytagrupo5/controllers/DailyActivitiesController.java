@@ -16,6 +16,7 @@ public class DailyActivitiesController {
     @Autowired
     private IDailyActivitiesService dS;
 
+    @PostMapping
     public void insert(@RequestBody DailyActivitiesDTO dto){
         ModelMapper m = new ModelMapper();
         DailyActivities d = m.map(dto, DailyActivities.class);

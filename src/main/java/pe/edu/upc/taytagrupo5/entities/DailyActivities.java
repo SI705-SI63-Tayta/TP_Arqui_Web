@@ -2,6 +2,8 @@ package pe.edu.upc.taytagrupo5.entities;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "dailyActivities")
 public class DailyActivities {
 
     @Id
