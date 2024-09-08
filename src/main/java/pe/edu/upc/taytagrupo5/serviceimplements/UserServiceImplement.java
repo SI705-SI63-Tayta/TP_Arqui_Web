@@ -1,11 +1,10 @@
 package pe.edu.upc.taytagrupo5.serviceimplements;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.taytagrupo5.entities.User;
 import pe.edu.upc.taytagrupo5.repositories.IUserRepository;
-import pe.edu.upc.taytagrupo5.serviceinterfaces.IUserService;
+import pe.edu.upc.taytagrupo5.servicesinterfaces.IUserService;
 
 import java.util.List;
 
@@ -15,25 +14,25 @@ public class UserServiceImplement implements IUserService {
     private IUserRepository uR;
 
     @Override
-    public void insert(User u) {
-        uR.save(u);
+    public void insert(User user){
+        uR.save(user);}
+    @Override
+    public List<User> list(){
+        return uR.findAll();}
+
+    @Override
+    public void delete(int id) {
+        uR.deleteById(id);
+
     }
 
     @Override
-    public List<User> list(){ return uR.findAll();}
-
-    @Override
-    public void delete(int idUser) {
-        uR.deleteById(idUser);
+    public User listId(int id) {
+        return uR.findById(id).orElse(new User());
     }
 
     @Override
-    public User listId(int idUser) {
-        return uR.findById(idUser).orElse(new User());
-    }
-
-    @Override
-    public void update(User u) {
-        uR.save(u);
+    public User findByUserName(String username) {
+        return uR.findByUserName(username);
     }
 }

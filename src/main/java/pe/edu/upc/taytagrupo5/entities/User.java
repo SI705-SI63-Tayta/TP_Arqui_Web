@@ -1,53 +1,66 @@
 package pe.edu.upc.taytagrupo5.entities;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity
-@Table(name="Users")
-public class User {
+@Table(name = "UserT")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
-
-    @Column(name = "fullName",nullable = false, length = 50)
+    private Long idUser;
+    @Column(name = "userName", nullable = false, length = 50)
+    private String userName;
+    @Column(name = "fullName", nullable = false, length = 50)
     private String fullName;
-
     @Column(name = "email", nullable = false, length = 50)
     private String email;
-
-    @Column(name = "password", nullable = false, length = 20)
+    @Column(name = "password", nullable = false, length = 200)
     private String password;
-
-    @Column(name = "address", nullable = false)
-    private String address;
-
-    @Column(name = "dni", nullable = false, length = 8)
-    private String dni;
-
-    @ManyToOne
-    @JoinColumn(name = "idRol")
-    private Rol rol;
+    @Column(name = "enabled", nullable = false)
+    private Boolean enabled;
+    @Column(name = "symptoms", nullable = false, length = 200)
+    private String symptoms;
+    @Column(name = "dni", nullable = false)
+    private int dni;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Role> roles = new ArrayList<>();
 
     public User() {
     }
 
-    public User(int idUser, String fullName, String email, String password, String address, String dni, Rol rol) {
+    public User(Long idUser, String userName, String fullName, String email, String password, Boolean enabled, String symptoms, int dni, List<Role> roles) {
         this.idUser = idUser;
+        this.userName = userName;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.address = address;
+        this.enabled = enabled;
+        this.symptoms = symptoms;
         this.dni = dni;
-        this.rol = rol;
+        this.roles = roles;
     }
 
-    public int getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFullName() {
@@ -74,27 +87,36 @@ public class User {
         this.password = password;
     }
 
-    public String getAddress() {
-        return address;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getDni() {
+    public String getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(String symptoms) {
+        this.symptoms = symptoms;
+    }
+
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
-    public Rol getRol() {
-        return rol;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
+

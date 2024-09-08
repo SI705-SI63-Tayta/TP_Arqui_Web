@@ -1,15 +1,11 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-import jakarta.persistence.Column;
-
-public class UserDTO {
+public class UserWithoutPasswordDTO {
     private int idUser;
     private String userName;
     private String fullName;
     private String email;
-    private String password;
     private Boolean enabled;
-    private String symptoms;
     private int dni;
 
     public int getIdUser() {
@@ -52,27 +48,11 @@ public class UserDTO {
         this.enabled = enabled;
     }
 
-    public String getSymptoms() {
-        return symptoms;
-    }
-
-    public void setSymptoms(String symptoms) {
-        this.symptoms = symptoms;
-    }
-
     public int getDni() {
         return dni;
     }
 
     public void setDni(int dni) {
         this.dni = dni;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
