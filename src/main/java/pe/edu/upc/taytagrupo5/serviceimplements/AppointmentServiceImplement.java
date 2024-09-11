@@ -40,4 +40,9 @@ public class AppointmentServiceImplement implements IAppointmentService {
         aR.deleteById(id);
     }
 
+    @Override
+    public List<String[]> CantidadModalidadCitas() {
+        return aR.CantidadModalidadCitas();
+    }
+
 }
