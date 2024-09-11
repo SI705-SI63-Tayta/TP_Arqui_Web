@@ -14,4 +14,7 @@ public interface IReviewService {
     public void update(Review r);
 
     public void deleteById(int id);
+
+    public List<String[]> listarcalificacionmayor3() ;
+    public List<String[]>top5CalificacionPersonal();
 }

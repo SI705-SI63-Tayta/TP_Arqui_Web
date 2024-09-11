@@ -37,7 +37,10 @@ public class RecipeServiceImplement implements IRecipeService {
         return rR.findById(idRecipe).orElse(new Recipe());
     }
 
-
+    @Override
+    public List<String[]> recetasFinalizadasPorCliente() {
+        return rR.recetasFinalizadasPorCliente();
+    }
 
 
 }

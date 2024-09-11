@@ -4,10 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.ReviewDTO;
+import pe.edu.upc.taytagrupo5.dtos.Top5PersonalDTO;
 import pe.edu.upc.taytagrupo5.entities.Review;
+import pe.edu.upc.taytagrupo5.entities.User;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IReviewService;
+import pe.edu.upc.taytagrupo5.serviceinterfaces.IUserService;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +21,8 @@ public class ReviewController {
     @Autowired
     private IReviewService rS;
 
+    @Autowired
+    private IUserService uS;
     @GetMapping
     public List<ReviewDTO> listar() {
         return rS.list().stream().map(x->{
@@ -48,6 +54,37 @@ public class ReviewController {
         ModelMapper m = new ModelMapper();
         Review r = m.map(dto, Review.class);
         rS.update(r);
+    }
+
+    @GetMapping("/calificacionmayor3")
+    public List<ReviewDTO> listarcalificacionmayor3(){
+        List<String[]>lista=rS.listarcalificacionmayor3();
+        List<ReviewDTO>listaDTO=new ArrayList<>();
+
+        for (String[] c:lista) {
+            ReviewDTO dto=new ReviewDTO();
+            dto.setUserCliente(uS.listId(Integer.parseInt(c[0])));
+            dto.setUserPersonal(uS.listId(Integer.parseInt(c[1])));
+            dto.setIdReview(Integer.parseInt(c[2]));
+            dto.setIdReview(Integer.parseInt(c[3]));
+            dto.setCommentReview(c[4]);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+    @GetMapping("/top5Personal")
+    public List<Top5PersonalDTO>top5CalificacionPersonal(){
+        List<String[]>lista=rS.top5CalificacionPersonal();
+        List<Top5PersonalDTO> listaDTO=new ArrayList<>();
+
+        for(String[] c:lista) {
+            Top5PersonalDTO dto=new Top5PersonalDTO();
+            dto.setFull_name(c[0]);
+            dto.setAverage((double) Math.round(Double.parseDouble(c[1])),2);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 
 }

@@ -4,9 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.AppointmentDTO;
+import pe.edu.upc.taytagrupo5.dtos.CantidadModalidadCitaDTO;
 import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IAppointmentService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +51,20 @@ public class AppointmentController {
         ModelMapper m = new ModelMapper();
         Appointment a= m.map(dto,Appointment.class);
         aS.update(a);
+    }
+
+    @GetMapping("/CantidadModalidad")
+    public List<CantidadModalidadCitaDTO>CantidadModalidadCitas(){
+        List<String[]> lista=aS.CantidadModalidadCitas();
+        List<CantidadModalidadCitaDTO> listaDTO=new ArrayList<>();
+
+        for(String[] c:lista){
+            CantidadModalidadCitaDTO dto=new CantidadModalidadCitaDTO();
+            dto.setModalidad(c[0]);
+            dto.setCantidad(Integer.parseInt(c[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
     }
 
 }

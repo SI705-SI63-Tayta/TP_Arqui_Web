@@ -39,5 +39,15 @@ public class ReviewServiceImplement implements IReviewService {
         rR.deleteById(id);
     }
 
+    @Override
+    public List<String[]> listarcalificacionmayor3() {
+        return rR.listarcalificacionmayor3();
+    }
+
+    @Override
+    public List<String[]> top5CalificacionPersonal() {
+        return rR.top5CalificacionPersonal();
+    }
+
 
 }
