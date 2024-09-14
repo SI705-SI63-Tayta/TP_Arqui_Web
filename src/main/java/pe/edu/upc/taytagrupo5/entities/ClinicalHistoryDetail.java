@@ -16,7 +16,7 @@ public class ClinicalHistoryDetail {
 
     @ManyToOne
     @JoinColumn(name = "idRecipes")
-    private  Recipes recetas_receta_id;
+    private  Recipe recetas_receta_id;
 
     @ManyToOne
     @JoinColumn(name = "idAppointment")
@@ -29,7 +29,7 @@ public class ClinicalHistoryDetail {
     public ClinicalHistoryDetail() {
     }
 
-    public ClinicalHistoryDetail(int id_detalle_historia, Recipes recetas_receta_id, Appointment cita_cita_id, String diagnostico) {
+    public ClinicalHistoryDetail(int id_detalle_historia, Recipe recetas_receta_id, Appointment cita_cita_id, String diagnostico) {
         this.id_detalle_historia = id_detalle_historia;
         this.recetas_receta_id = recetas_receta_id;
         this.cita_cita_id = cita_cita_id;
@@ -45,11 +45,11 @@ public class ClinicalHistoryDetail {
         this.id_detalle_historia = id_detalle_historia;
     }
 
-    public Recipes getRecetas_receta_id() {
+    public Recipe getRecetas_receta_id() {
         return recetas_receta_id;
     }
 
-    public void setRecetas_receta_id(Recipes recetas_receta_id) {
+    public void setRecetas_receta_id(Recipe recetas_receta_id) {
         this.recetas_receta_id = recetas_receta_id;
     }
 

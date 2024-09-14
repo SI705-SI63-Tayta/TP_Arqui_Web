@@ -1,13 +1,13 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 import pe.edu.upc.taytagrupo5.entities.Appointment;
-import pe.edu.upc.taytagrupo5.entities.Recipes;
+import pe.edu.upc.taytagrupo5.entities.Recipe;
 
 public class ClinicalHistoryDetailDTO {
 
     private int id_detalle_historia;
 
-    private Recipes recetas_receta_id;
+    private Recipe recetas_receta_id;
 
     private Appointment cita_cita_id;
 
@@ -22,11 +22,11 @@ public class ClinicalHistoryDetailDTO {
         this.id_detalle_historia = id_detalle_historia;
     }
 
-    public Recipes getRecetas_receta_id() {
+    public Recipe getRecetas_receta_id() {
         return recetas_receta_id;
     }
 
-    public void setRecetas_receta_id(Recipes recetas_receta_id) {
+    public void setRecetas_receta_id(Recipe recetas_receta_id) {
         this.recetas_receta_id = recetas_receta_id;
     }
 
