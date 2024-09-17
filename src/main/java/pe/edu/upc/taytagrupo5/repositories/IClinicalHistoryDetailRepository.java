@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.taytagrupo5.entities.ClinicalHistoryDetail;
 
@@ -19,8 +20,8 @@ public interface IClinicalHistoryDetailRepository extends JpaRepository<Clinical
             " FROM users u\n" +
             " JOIN medical_record hc ON u.id_user = hc.id_user\n" +
             " JOIN clinical_history_detail dhc ON hc.id_medical_record = dhc.id_detalle_historia\n" +
-            " WHERE u.DNI = '12345678';" ,nativeQuery = true)
-    public List<ClinicalHistoryDetail> findByDNI(String DNI);
+            " WHERE u.DNI = :dni;" ,nativeQuery = true)
+    public List<ClinicalHistoryDetail> findByDNI(@Param("dni")String dni);
 
 
 
