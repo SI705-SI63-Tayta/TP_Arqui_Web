@@ -6,6 +6,7 @@ import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.repositories.IAppointmentRepository;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IAppointmentService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -41,8 +42,13 @@ public class AppointmentServiceImplement implements IAppointmentService {
     }
 
     @Override
-    public List<String[]> CantidadModalidadCitas() {
-        return aR.CantidadModalidadCitas();
+    public List<String[]> cantidadModalidadesCitas() {
+        return aR.cantidadModalidadesCitas();
+    }
+
+    @Override
+    public List<String[]> cantidadCitasPeriodo(LocalDate date1, LocalDate date2) {
+        return aR.cantidadCitasPeriodo(date1, date2);
     }
 
     @Override
