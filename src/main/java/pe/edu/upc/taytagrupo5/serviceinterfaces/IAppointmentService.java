@@ -10,4 +10,6 @@ public interface IAppointmentService {
     public void update(Appointment a);
     public void deleteById(int id);
     public List<String[]>CantidadModalidadCitas();
+    public List<String[]> listarPacientesPorPersonal(String personal);
+    public List<String[]> listarPacientesPorFecha(String fecha);
 }
