@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.ClinicalHistoryDetailDTO;
+import pe.edu.upc.taytagrupo5.dtos.SearchBydniDTO;
 import pe.edu.upc.taytagrupo5.entities.ClinicalHistoryDetail;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IClinicalHistoryDetailService;
 
@@ -46,7 +47,13 @@ public class ClinicalHistoryDetailController {
     }
 
 
-
+    @GetMapping("/buscar")
+    public List<SearchBydniDTO> buscar(@RequestParam String dni) {
+        return hDS.findByDNI(dni).stream().map(x->{
+            ModelMapper m=new ModelMapper();
+            return m.map(x,SearchBydniDTO.class);
+        }).collect(Collectors.toList());
+    }
 
 
 
