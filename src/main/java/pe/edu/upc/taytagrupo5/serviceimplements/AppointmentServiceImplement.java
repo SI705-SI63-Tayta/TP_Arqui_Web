@@ -47,7 +47,7 @@ public class AppointmentServiceImplement implements IAppointmentService {
     }
 
     @Override
-    public List<String[]> cantidadCitasPeriodo(LocalDate date1, LocalDate date2) {
+    public List<String[]> cantidadCitasPeriodo(String date1, String date2) {
         return aR.cantidadCitasPeriodo(date1, date2);
     }
 

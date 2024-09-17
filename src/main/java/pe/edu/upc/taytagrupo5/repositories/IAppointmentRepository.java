@@ -43,12 +43,15 @@ public interface IAppointmentRepository extends JpaRepository<Appointment, Integ
     @Query(value = "SELECT c.full_name\n" +
             " FROM appointments ap\n" +
             " JOIN users c ON ap.id_cliente = c.id_user\n" +
-            " WHERE TO_CHAR(ap.date, 'YYYY-MM-DD') LIKE :fecha", nativeQuery = true)
+            " WHERE TO_CHAR(ap.date, 'DD-MM-YYYY') LIKE :fecha", nativeQuery = true)
     public List<String[]> listarPacientesPorFecha(@Param("fecha") String fecha);
 
-    @Query(value ="SELECT u.dni, u.full_name, count(*) as q from users u inner join appointments ap on u.id_user=ap.id_cliente \n" +
-            "where u.id_rol=1 AND(ap.date between :date1 and :date2)\n" +
-            "group by u.dni, u.full_name", nativeQuery = true)
-    public List<String[]> cantidadCitasPeriodo(@Param("date1") LocalDate date1, @Param("date2")LocalDate date2);
+    @Query(value = "SELECT u.dni, u.full_name, count(*) as q " +
+                   "FROM users u " +
+                   "INNER JOIN appointments ap ON u.id_user = ap.id_cliente " +
+                   "WHERE u.id_rol = 1 AND (TO_CHAR(ap.date, 'DD-MM-YYYY') BETWEEN :date1 AND :date2) " +
+                   "GROUP BY u.dni, u.full_name", nativeQuery = true)
+    public List<String[]> cantidadCitasPeriodo(@Param("date1") String date1, @Param("date2") String date2);
+
 
 }

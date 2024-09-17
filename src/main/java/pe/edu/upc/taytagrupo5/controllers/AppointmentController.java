@@ -97,7 +97,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/cantidadCitas")
-    public List<AppointmentCountDTO> AppointmentCountDTO(@RequestParam LocalDate date1, @RequestParam LocalDate date2){
+    public List<AppointmentCountDTO> AppointmentCountDTO(@RequestParam String date1, @RequestParam String date2){
         List<String[]> filaLista = aS.cantidadCitasPeriodo(date1,date2);
         List<AppointmentCountDTO> dtoLista = new ArrayList<>();
         for (String[] columna : filaLista) {
