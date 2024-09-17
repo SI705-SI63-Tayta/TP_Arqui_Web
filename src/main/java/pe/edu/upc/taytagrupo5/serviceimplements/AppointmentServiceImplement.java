@@ -45,4 +45,14 @@ public class AppointmentServiceImplement implements IAppointmentService {
         return aR.CantidadModalidadCitas();
     }
 
+    @Override
+    public List<String[]> listarPacientesPorPersonal(String personal) {
+        return aR.listarPacientesPorPersonal(personal);
+    }
+
+    @Override
+    public List<String[]> listarPacientesPorFecha(String fecha) {
+        return aR.listarPacientesPorFecha(fecha);
+    }
+
 }

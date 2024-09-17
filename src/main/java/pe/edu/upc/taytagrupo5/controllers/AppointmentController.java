@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.AppointmentDTO;
 import pe.edu.upc.taytagrupo5.dtos.CantidadModalidadCitaDTO;
+import pe.edu.upc.taytagrupo5.dtos.ListPatientsByDateDTO;
+import pe.edu.upc.taytagrupo5.dtos.ListPatientsByStaffDTO;
 import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IAppointmentService;
 
@@ -62,6 +64,34 @@ public class AppointmentController {
             CantidadModalidadCitaDTO dto=new CantidadModalidadCitaDTO();
             dto.setModalidad(c[0]);
             dto.setCantidad(Integer.parseInt(c[1]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+    @GetMapping("/ListarPacientesPorPersonal")
+    public List<ListPatientsByStaffDTO> listPatientsByStaff(@RequestParam String personal){
+        List<String[]> lista2=aS.listarPacientesPorPersonal(personal);
+        List<ListPatientsByStaffDTO> listaDTO=new ArrayList<>();
+
+        for(String[] c:lista2){
+            ListPatientsByStaffDTO dto=new ListPatientsByStaffDTO();
+            dto.setTipoRol(c[0]);
+            dto.setStaffName(c[1]);
+            dto.setPatientName(c[2]);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+    @GetMapping("/ListarPacientesPorFecha")
+    public List<ListPatientsByDateDTO> listPatientsByDate(@RequestParam String date){
+        List<String[]> lista3=aS.listarPacientesPorFecha(date);
+        List<ListPatientsByDateDTO> listaDTO=new ArrayList<>();
+
+        for(String[] c:lista3){
+            ListPatientsByDateDTO dto=new ListPatientsByDateDTO();
+            dto.setNamePatient(c[0]);
             listaDTO.add(dto);
         }
         return listaDTO;
