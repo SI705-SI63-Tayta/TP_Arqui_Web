@@ -33,4 +33,9 @@ public class ClinicalHistoryDetailServiceImplement implements IClinicalHistoryDe
     public List<ClinicalHistoryDetail> list() {
         return cHD.findAll();
     }
+
+    @Override
+    public List<ClinicalHistoryDetail> findByDNI(String dni) {
+        return cHD.findByDNI(dni);
+    }
 }
