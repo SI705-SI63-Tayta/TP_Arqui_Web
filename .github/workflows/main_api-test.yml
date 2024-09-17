@@ -57,7 +57,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'api-test'
+          app-name: 'api-si63'
           slot-name: 'Production'
           package: '*.jar'
           
