@@ -3,19 +3,19 @@ package pe.edu.upc.taytagrupo5.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.taytagrupo5.dtos.AppointmentDTO;
-import pe.edu.upc.taytagrupo5.dtos.CantidadModalidadCitaDTO;
-import pe.edu.upc.taytagrupo5.dtos.ListPatientsByDateDTO;
-import pe.edu.upc.taytagrupo5.dtos.ListPatientsByStaffDTO;
+import pe.edu.upc.taytagrupo5.dtos.*;
 import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IAppointmentService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/citas")
+
+//actualizando emerson
 public class AppointmentController {
 
     @Autowired
@@ -55,15 +55,14 @@ public class AppointmentController {
         aS.update(a);
     }
 
-    @GetMapping("/CantidadModalidad")
-    public List<CantidadModalidadCitaDTO>CantidadModalidadCitas(){
-        List<String[]> lista=aS.CantidadModalidadCitas();
-        List<CantidadModalidadCitaDTO> listaDTO=new ArrayList<>();
-
-        for(String[] c:lista){
-            CantidadModalidadCitaDTO dto=new CantidadModalidadCitaDTO();
-            dto.setModalidad(c[0]);
-            dto.setCantidad(Integer.parseInt(c[1]));
+    @GetMapping("/cantidadModoCitas")
+    public List<AppointmentModeDTO> cantidadmodo() {
+        List<String[]> lista=aS.cantidadModalidadesCitas();
+        List<AppointmentModeDTO>listaDTO=new ArrayList<>();
+        for(String[] columna:lista){
+            AppointmentModeDTO dto=new AppointmentModeDTO();
+            dto.setMode(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
             listaDTO.add(dto);
         }
         return listaDTO;
@@ -95,6 +94,20 @@ public class AppointmentController {
             listaDTO.add(dto);
         }
         return listaDTO;
+    }
+
+    @GetMapping("/cantidadCitas")
+    public List<AppointmentCountDTO> AppointmentCountDTO(@RequestParam LocalDate date1, @RequestParam LocalDate date2){
+        List<String[]> filaLista = aS.cantidadCitasPeriodo(date1,date2);
+        List<AppointmentCountDTO> dtoLista = new ArrayList<>();
+        for (String[] columna : filaLista) {
+            AppointmentCountDTO dto = new AppointmentCountDTO();
+            dto.setIdUser(Integer.parseInt(columna[0]));
+            dto.setFullName(columna[1]);
+            dto.setCantidad(Integer.parseInt(columna[2]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 
 }

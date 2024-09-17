@@ -1,15 +1,15 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-public class CantidadModalidadCitaDTO {
-    private String modalidad;
+public class AppointmentModeDTO {
+    private String mode;
     private int cantidad;
 
-    public String getModalidad() {
-        return modalidad;
+    public String getMode() {
+        return mode;
     }
 
-    public void setModalidad(String modalidad) {
-        this.modalidad = modalidad;
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public int getCantidad() {

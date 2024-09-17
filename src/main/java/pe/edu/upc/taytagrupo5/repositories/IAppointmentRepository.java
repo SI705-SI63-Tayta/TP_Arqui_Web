@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.taytagrupo5.entities.Appointment;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -13,7 +14,7 @@ public interface IAppointmentRepository extends JpaRepository<Appointment, Integ
     @Query(value ="SELECT mode, COUNT(*) \n" +
             " FROM appointments \n" +
             " GROUP BY mode ;" ,nativeQuery = true)
-    public List<String[]>CantidadModalidadCitas();
+    public List<String[]>cantidadModalidadesCitas();
 
     @Query(value = "SELECT \n" +
             "    r.tipo_rol AS tipo_rol,\n" +
@@ -44,5 +45,10 @@ public interface IAppointmentRepository extends JpaRepository<Appointment, Integ
             " JOIN users c ON ap.id_cliente = c.id_user\n" +
             " WHERE TO_CHAR(ap.date, 'YYYY-MM-DD') LIKE :fecha", nativeQuery = true)
     public List<String[]> listarPacientesPorFecha(@Param("fecha") String fecha);
+
+    @Query(value ="SELECT u.dni, u.full_name, count(*) as q from users u inner join appointments ap on u.id_user=ap.id_cliente \n" +
+            "where u.id_rol=1 AND(ap.date between :date1 and :date2)\n" +
+            "group by u.dni, u.full_name", nativeQuery = true)
+    public List<String[]> cantidadCitasPeriodo(@Param("date1") LocalDate date1, @Param("date2")LocalDate date2);
 
 }
