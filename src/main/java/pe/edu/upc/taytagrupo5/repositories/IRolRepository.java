@@ -12,9 +12,9 @@ import java.util.List;
 public interface IRolRepository extends JpaRepository<Rol,Integer> {
 
 
-    @Query(value = "select r.rol , count(*) from rol as r \n" +
-            "inner join user_table as us ON us.id_user = r.user_id \n" +
-            "group by r.rol ", nativeQuery = true)
+    @Query(value = "select r.tipo_rol , count(*) from rol as r \n" +
+            "inner join users as u ON u.id_rol=r.id_rol \n" +
+            "group by r.id_rol ", nativeQuery = true)
     public List<String[]> quantityUserPerRol();
 
 

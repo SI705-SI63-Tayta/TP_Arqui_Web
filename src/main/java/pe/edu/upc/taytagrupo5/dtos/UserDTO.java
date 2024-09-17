@@ -1,6 +1,7 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 import jakarta.persistence.Column;
+import pe.edu.upc.taytagrupo5.entities.Rol;
 
 public class UserDTO {
     private int idUser;
@@ -15,7 +16,7 @@ public class UserDTO {
 
     private String dni;
 
-    private RolDTO rol;
+    private Rol rol;
 
     public int getIdUser() {
         return idUser;
@@ -65,11 +66,11 @@ public class UserDTO {
         this.dni = dni;
     }
 
-    public RolDTO getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(RolDTO rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 }

@@ -10,7 +10,7 @@ public class RecipeDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private String state;
-    private Appointment ap;
+    private Appointment appointment;
 
     public int getIdRecipe() {
         return idRecipe;
@@ -52,11 +52,11 @@ public class RecipeDTO {
         this.state = state;
     }
 
-    public Appointment getAp() {
-        return ap;
+    public Appointment getAppointment() {
+        return appointment;
     }
 
-    public void setAp(Appointment ap) {
-        this.ap = ap;
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
 }

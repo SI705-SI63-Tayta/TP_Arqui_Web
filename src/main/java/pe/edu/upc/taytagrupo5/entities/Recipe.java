@@ -80,11 +80,11 @@ public class Recipe {
         this.state = state;
     }
 
-    public Appointment getAp() {
+    public Appointment getAppointment() {
         return appointment;
     }
 
-    public void setAp(Appointment ap) {
+    public void setAppointment(Appointment appointment) {
         this.appointment = appointment;
     }
 }
