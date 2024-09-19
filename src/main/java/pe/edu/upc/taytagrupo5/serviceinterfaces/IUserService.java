@@ -1,5 +1,6 @@
 package pe.edu.upc.taytagrupo5.serviceinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.taytagrupo5.entities.User;
 
 import java.util.List;
@@ -10,5 +11,5 @@ public interface IUserService {
     public void delete(int idUser);
     public User listId(int idUser);
     public void update(User u);
-
+    public List<String[]> listarfecha(String fecha);
 }

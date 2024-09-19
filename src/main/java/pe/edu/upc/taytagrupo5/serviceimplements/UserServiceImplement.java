@@ -36,4 +36,9 @@ public class UserServiceImplement implements IUserService {
     public void update(User u) {
         uR.save(u);
     }
+
+    @Override
+    public List<String[]> listarfecha(String fecha) {
+        return uR.listarfecha(fecha);
+    }
 }

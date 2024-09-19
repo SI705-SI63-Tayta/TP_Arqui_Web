@@ -4,10 +4,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.taytagrupo5.dtos.DateapointmentDTO;
+import pe.edu.upc.taytagrupo5.dtos.ListPatientsByDateDTO;
 import pe.edu.upc.taytagrupo5.dtos.UserDTO;
 import pe.edu.upc.taytagrupo5.entities.User;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IUserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,5 +55,16 @@ public class UserController {
         User d = m.map(dto, User.class);
         uS.update(d);
     }
+    @GetMapping("/Listafecha")
+    public List<DateapointmentDTO> listDate(@RequestParam String fecha){
+        List<String[]> lista4=uS.listarfecha(fecha);
+        List<DateapointmentDTO> listaDTO=new ArrayList<>();
 
+        for(String[] c:lista4){
+            DateapointmentDTO dto=new DateapointmentDTO();
+            dto.setFecha(c[0]);
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
 }
