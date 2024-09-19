@@ -3,22 +3,20 @@ package pe.edu.upc.taytagrupo5.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "Rol")
-public class Rol {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int idRol;
 
-    @Column(name = "tipo_rol", nullable = false, length = 15)
+    @Column(name = "tipoRol", nullable = false, length = 15)
     private String tipoRol;
 
-    public Rol() {
+    public Role() {
     }
 
-    public Rol(int idRol, String tipoRol) {
+    public Role(int idRol, String tipoRol) {
         this.idRol = idRol;
         this.tipoRol = tipoRol;
     }

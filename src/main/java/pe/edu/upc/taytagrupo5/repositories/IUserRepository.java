@@ -7,4 +7,6 @@ import pe.edu.upc.taytagrupo5.entities.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
+    public User findByUsername(String username);
+
 }

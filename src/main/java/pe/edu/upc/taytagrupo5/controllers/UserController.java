@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.UserDTO;
 import pe.edu.upc.taytagrupo5.entities.User;
@@ -11,16 +12,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/Users")
 public class UserController {
     @Autowired
     private IUserService uS;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping
     public void registrar(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
-        User d = m.map(dto, User.class);
-        uS.insert(d);
+        User u = m.map(dto, User.class);
+        String encodedPassword = passwordEncoder.encode(u.getPassword());
+        u.setPassword(encodedPassword);
+        uS.insert(u);
     }
 
     @GetMapping

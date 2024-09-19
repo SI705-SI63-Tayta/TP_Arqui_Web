@@ -1,12 +1,11 @@
 package pe.edu.upc.taytagrupo5.controllers;
-import jakarta.validation.constraints.Max;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.QuantityUserPerRolDTO;
-import pe.edu.upc.taytagrupo5.dtos.RolDTO;
-import pe.edu.upc.taytagrupo5.entities.Rol;
-import pe.edu.upc.taytagrupo5.serviceinterfaces.IRolServices;
+import pe.edu.upc.taytagrupo5.dtos.RoleDTO;
+import pe.edu.upc.taytagrupo5.entities.Role;
+import pe.edu.upc.taytagrupo5.serviceinterfaces.IRoleServices;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,23 +13,23 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Roles")
-public class RolController {
+public class RoleController {
    @Autowired
-   private IRolServices rs;
+   private IRoleServices rs;
 
    @PostMapping
-    public void registrar(@RequestBody RolDTO dto){
+    public void registrar(@RequestBody RoleDTO dto){
 
        ModelMapper m = new ModelMapper();
-       Rol d = m.map(dto,Rol.class);
+       Role d = m.map(dto, Role.class);
        rs.insert(d);
 
    }
 
    @GetMapping
-    public List<RolDTO> listar(){
+    public List<RoleDTO> listar(){
        return rs.list().stream().map(x->{ModelMapper m=new ModelMapper();
-       return  m.map(x,RolDTO.class);
+       return  m.map(x, RoleDTO.class);
        }).collect(Collectors.toList());
 
    }
@@ -41,9 +40,9 @@ public class RolController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody RolDTO dto) {
+    public void modificar(@RequestBody RoleDTO dto) {
         ModelMapper m = new ModelMapper();
-        Rol d = m.map(dto, Rol.class);
+        Role d = m.map(dto, Role.class);
         rs.update(d);
     }
 

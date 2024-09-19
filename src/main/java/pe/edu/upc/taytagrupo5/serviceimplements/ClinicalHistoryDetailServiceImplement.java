@@ -3,6 +3,7 @@ package pe.edu.upc.taytagrupo5.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.taytagrupo5.dtos.SearchByDniDTO;
 import pe.edu.upc.taytagrupo5.entities.ClinicalHistoryDetail;
 import pe.edu.upc.taytagrupo5.repositories.IClinicalHistoryDetailRepository;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IClinicalHistoryDetailService;
@@ -32,5 +33,10 @@ public class ClinicalHistoryDetailServiceImplement implements IClinicalHistoryDe
     @Override
     public List<ClinicalHistoryDetail> list() {
         return cHD.findAll();
+    }
+
+    @Override
+    public List<String[]> findByDNI(String dni) {
+        return  cHD.findByDNI(dni);
     }
 }

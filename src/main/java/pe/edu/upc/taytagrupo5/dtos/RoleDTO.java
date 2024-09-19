@@ -1,11 +1,6 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.taytagrupo5.entities.User;
-
-import java.util.List;
-
-public class RolDTO {
+public class RoleDTO {
 
     private  int idRol;
 

@@ -10,7 +10,7 @@ public interface IRecipeService {
     public void update(Recipe recipe);
     public void delete(int idRecipe);
     public Recipe listId(int idRecipe);
-    public List<String[]>recetasFinalizadasPorCliente();
+    public List<String[]>recipesFinishedPerClient();
 
 
 }

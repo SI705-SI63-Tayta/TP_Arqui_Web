@@ -3,7 +3,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.taytagrupo5.dtos.CantidadRecetasFinalizadasClienteDTO;
+import pe.edu.upc.taytagrupo5.dtos.QuantityRecipesFinishedPerClientDTO;
 import pe.edu.upc.taytagrupo5.dtos.RecipeDTO;
 import pe.edu.upc.taytagrupo5.entities.Recipe;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IRecipeService;
@@ -52,11 +52,11 @@ public class RecipeController {
     }
 
     @GetMapping("/recetasFinalizadas")
-    public List<CantidadRecetasFinalizadasClienteDTO>recetasFinalizadasPorCliente(){
-        List<String[]>lista= rs.recetasFinalizadasPorCliente();
-        List<CantidadRecetasFinalizadasClienteDTO> listadto=new ArrayList<>();
+    public List<QuantityRecipesFinishedPerClientDTO>recipesFinishedPerClient(){
+        List<String[]>lista= rs.recipesFinishedPerClient();
+        List<QuantityRecipesFinishedPerClientDTO> listadto=new ArrayList<>();
         for (String[] c:lista){
-            CantidadRecetasFinalizadasClienteDTO dto= new CantidadRecetasFinalizadasClienteDTO();
+            QuantityRecipesFinishedPerClientDTO dto= new QuantityRecipesFinishedPerClientDTO();
             dto.setFull_name(c[0]);
             dto.setQuantity(Integer.parseInt(c[1]));
             listadto.add(dto);

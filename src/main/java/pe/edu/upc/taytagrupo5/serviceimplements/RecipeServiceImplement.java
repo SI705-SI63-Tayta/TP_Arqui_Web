@@ -38,8 +38,8 @@ public class RecipeServiceImplement implements IRecipeService {
     }
 
     @Override
-    public List<String[]> recetasFinalizadasPorCliente() {
-        return rR.recetasFinalizadasPorCliente();
+    public List<String[]> recipesFinishedPerClient() {
+        return rR.recipesFinishedPerClient();
     }
 
 

@@ -2,27 +2,27 @@ package pe.edu.upc.taytagrupo5.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.taytagrupo5.entities.Rol;
-import pe.edu.upc.taytagrupo5.repositories.IRolRepository;
-import pe.edu.upc.taytagrupo5.serviceinterfaces.IRolServices;
+import pe.edu.upc.taytagrupo5.entities.Role;
+import pe.edu.upc.taytagrupo5.repositories.IRoleRepository;
+import pe.edu.upc.taytagrupo5.serviceinterfaces.IRoleServices;
 
 import java.util.List;
 
 
 @Service
-public class RolServiceImplement implements IRolServices {
+public class RoleServiceImplement implements IRoleServices {
 
     @Autowired
-    private IRolRepository rR;
+    private IRoleRepository rR;
 
 
     @Override
-    public void insert(Rol rol) {
-        rR.save(rol);
+    public void insert(Role role) {
+        rR.save(role);
     }
 
     @Override
-    public List<Rol> list() {
+    public List<Role> list() {
         return rR.findAll();
     }
 
@@ -33,8 +33,8 @@ public class RolServiceImplement implements IRolServices {
 
 
     @Override
-    public void update(Rol rol) {
-        rR.save(rol);
+    public void update(Role role) {
+        rR.save(role);
     }
 
     @Override

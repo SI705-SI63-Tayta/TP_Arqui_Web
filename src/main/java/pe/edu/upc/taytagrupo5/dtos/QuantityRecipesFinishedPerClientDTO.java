@@ -1,6 +1,6 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-public class CantidadRecetasFinalizadasClienteDTO {
+public class QuantityRecipesFinishedPerClientDTO {
     private String full_name;
     private int quantity;
 

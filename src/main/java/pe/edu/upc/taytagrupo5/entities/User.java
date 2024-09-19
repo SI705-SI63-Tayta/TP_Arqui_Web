@@ -10,14 +10,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
-    @Column(name = "fullName",nullable = false, length = 50)
+    @Column(name = "fullName", nullable = false, length = 50)
     private String fullName;
 
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 20)
+    @Column(name = "username", nullable = false, length = 50)
+    private String username;
+
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
+
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -27,19 +33,21 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "idRol")
-    private Rol rol;
+    private Role role;
 
     public User() {
     }
 
-    public User(int idUser, String fullName, String email, String password, String address, String dni, Rol rol) {
+    public User(int idUser, String fullName, String email, String username, String password, boolean enabled, String address, String dni, Role role) {
         this.idUser = idUser;
         this.fullName = fullName;
         this.email = email;
+        this.username = username;
         this.password = password;
+        this.enabled = enabled;
         this.address = address;
         this.dni = dni;
-        this.rol = rol;
+        this.role = role;
     }
 
     public int getIdUser() {
@@ -66,12 +74,28 @@ public class User {
         this.email = email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getAddress() {
@@ -90,11 +114,11 @@ public class User {
         this.dni = dni;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

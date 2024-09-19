@@ -5,9 +5,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.ClinicalHistoryDetailDTO;
+import pe.edu.upc.taytagrupo5.dtos.SearchByDniDTO;
 import pe.edu.upc.taytagrupo5.entities.ClinicalHistoryDetail;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IClinicalHistoryDetailService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +30,8 @@ public class ClinicalHistoryDetailController {
 
     @GetMapping
     public List<ClinicalHistoryDetailDTO> listar() {
-        return hDS.list().stream().map(x->{
-            ModelMapper m=new ModelMapper();
+        return hDS.list().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
             return m.map(x, ClinicalHistoryDetailDTO.class);
         }).collect(Collectors.toList());
     }
@@ -45,24 +48,20 @@ public class ClinicalHistoryDetailController {
         hDS.update(d);
     }
 
+    @GetMapping("/buscar")
+    public List<SearchByDniDTO> buscar(@RequestParam String dni) {
+        List<String[]> lista = hDS.findByDNI(dni);
+        List<SearchByDniDTO>listadto=new ArrayList<>();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for(String[] c:lista){
+            SearchByDniDTO dto=new SearchByDniDTO();
+            dto.setNombrepaciente(c[0]);
+            dto.setCorreo(c[1]);
+            dto.setFechahistoria(LocalDate.parse(c[2]));
+            dto.setDiagnostico(c[3]);
+            dto.setRecetaid(Integer.parseInt(c[4]));
+            listadto.add(dto);
+        }
+        return listadto;
+    }
 }

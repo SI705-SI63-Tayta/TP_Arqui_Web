@@ -12,6 +12,6 @@ public interface IRecipeRepository extends JpaRepository<Recipe, Integer> {
     @Query(value ="SELECT u.full_name, count(*) quantity FROM appointments ap inner join recipes r on ap.id_appointment=r.id_appointment \n" +
             " inner join users u on u.id_user=ap.id_cliente where u.id_user=1 and r.state='Finalizado' \n" +
             " group by u.full_name " ,nativeQuery = true)
-    public List<String[]> recetasFinalizadasPorCliente();
+    public List<String[]> recipesFinishedPerClient();
 
 }
