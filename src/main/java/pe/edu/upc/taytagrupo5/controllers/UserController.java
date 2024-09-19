@@ -4,12 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.taytagrupo5.dtos.DateapointmentDTO;
-import pe.edu.upc.taytagrupo5.dtos.ListPatientsByDateDTO;
+import pe.edu.upc.taytagrupo5.dtos.QuantityUsersPerDatesDTO;
 import pe.edu.upc.taytagrupo5.dtos.UserDTO;
 import pe.edu.upc.taytagrupo5.entities.User;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IUserService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,14 +55,17 @@ public class UserController {
         User d = m.map(dto, User.class);
         uS.update(d);
     }
+
     @GetMapping("/Listafecha")
-    public List<DateapointmentDTO> listDate(@RequestParam String fecha){
-        List<String[]> lista4=uS.listarfecha(fecha);
-        List<DateapointmentDTO> listaDTO=new ArrayList<>();
+    public List<QuantityUsersPerDatesDTO> listDate(@RequestParam LocalDate date1, @RequestParam LocalDate date2){
+        List<String[]> lista4=uS.listarfecha(date1,date2);
+        List<QuantityUsersPerDatesDTO> listaDTO=new ArrayList<>();
 
         for(String[] c:lista4){
-            DateapointmentDTO dto=new DateapointmentDTO();
-            dto.setFecha(c[0]);
+            QuantityUsersPerDatesDTO dto=new QuantityUsersPerDatesDTO();
+            dto.setFullName(c[0]);
+            dto.setDni(c[1]);
+            dto.setQuantity(Integer.parseInt(c[2]));
             listaDTO.add(dto);
         }
         return listaDTO;

@@ -7,6 +7,7 @@ import pe.edu.upc.taytagrupo5.entities.User;
 import pe.edu.upc.taytagrupo5.repositories.IUserRepository;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IUserService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -38,7 +39,7 @@ public class UserServiceImplement implements IUserService {
     }
 
     @Override
-    public List<String[]> listarfecha(String fecha) {
-        return uR.listarfecha(fecha);
+    public List<String[]> listarfecha(LocalDate date1, LocalDate date2) {
+        return uR.listarfecha(date1, date2);
     }
 }
