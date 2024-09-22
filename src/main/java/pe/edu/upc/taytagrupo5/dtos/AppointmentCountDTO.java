@@ -4,8 +4,7 @@ public class AppointmentCountDTO {
     private int idUser;
     private String fullName;
     private int cantidad;
-
-    //
+    
     public int getIdUser() {
         return idUser;
     }
