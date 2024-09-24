@@ -17,10 +17,10 @@ public class Appointment {
     @Column(name = "reason", nullable = false, length = 30)
     private String reason;
 
-    @Column(name = "mode", nullable = false, length = 10)
+    @Column(name = "mode", nullable = false, length = 30)
     private String mode;
 
-    @Column(name = "description", nullable = false, length = 50)
+    @Column(name = "description", nullable = false, length = 255)
     private String description;
 
     @ManyToOne

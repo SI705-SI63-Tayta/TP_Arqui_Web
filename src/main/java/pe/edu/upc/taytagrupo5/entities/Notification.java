@@ -8,7 +8,7 @@ public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotification;
-    @Column(name = "message", nullable = false,length = 30)
+    @Column(name = "message", nullable = false,length = 255)
     private String message;
     @ManyToOne
     @JoinColumn(name = "idUser")

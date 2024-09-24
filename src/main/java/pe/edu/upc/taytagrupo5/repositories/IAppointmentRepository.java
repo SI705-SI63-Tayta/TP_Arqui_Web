@@ -32,9 +32,9 @@ public interface IAppointmentRepository extends JpaRepository<Appointment, Integ
             "    rol r ON r.id_rol = p.id_rol\n" +
             "WHERE \n" +
             "    (\n" +
-            "        r.tipo_rol = 'Enfermero'\n" +
+            "        r.tipo_rol = 'ENFERMERO'\n" +
             "        OR\n" +
-            "        r.tipo_rol = 'Doctor'\n" +
+            "        r.tipo_rol = 'DOCTOR'\n" +
             "    )\n" +
             "AND \n" +
             "    p.full_name LIKE :personal", nativeQuery = true)

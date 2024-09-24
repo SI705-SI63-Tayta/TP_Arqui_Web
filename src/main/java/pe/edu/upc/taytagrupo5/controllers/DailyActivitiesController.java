@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.DailyActivitiesDTO;
 import pe.edu.upc.taytagrupo5.entities.DailyActivities;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class DailyActivitiesController {
     @Autowired
     private IDailyActivitiesService dS;
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @PostMapping
     public void insert(@RequestBody DailyActivitiesDTO dto){
         ModelMapper m = new ModelMapper();
@@ -30,18 +31,19 @@ public class DailyActivitiesController {
             return m.map(x, DailyActivitiesDTO.class);
         }).collect(Collectors.toList());
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @PutMapping
     public void update(@RequestBody DailyActivitiesDTO dto) {
         ModelMapper m = new ModelMapper();
         DailyActivities d = m.map(dto, DailyActivities.class);
         dS.update(d);
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         dS.delete(id);
     }
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/{id}")
     public DailyActivitiesDTO getById(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();

@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.*;
 import pe.edu.upc.taytagrupo5.entities.Appointment;
@@ -26,21 +27,21 @@ public class AppointmentController {
             return m.map(x,AppointmentDTO.class);
         }).collect(Collectors.toList());
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @PostMapping
     public void insert(@RequestBody AppointmentDTO dto){
         ModelMapper m = new ModelMapper();
         Appointment a = m.map(dto, Appointment.class);
         aS.insert(a);
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/{id}")
     public AppointmentDTO getById(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         AppointmentDTO dto = m.map(aS.listById(id), AppointmentDTO.class);
         return dto;
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         aS.deleteById(id);
@@ -52,7 +53,7 @@ public class AppointmentController {
         Appointment a= m.map(dto,Appointment.class);
         aS.update(a);
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/cantidadModoCitas")
     public List<AppointmentModeDTO> cantidadmodo() {
         List<String[]> lista=aS.cantidadModalidadesCitas();
@@ -65,7 +66,7 @@ public class AppointmentController {
         }
         return listaDTO;
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/ListarPacientesPorPersonal")
     public List<ListPatientsByStaffDTO> listPatientsByStaff(@RequestParam String personal){
         List<String[]> lista2=aS.listarPacientesPorPersonal(personal);
@@ -80,7 +81,7 @@ public class AppointmentController {
         }
         return listaDTO;
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/ListarPacientesPorFecha")
     public List<ListPatientsByDateDTO> listPatientsByDate(@RequestParam String date){
         List<String[]> lista3=aS.listarPacientesPorFecha(date);
@@ -93,7 +94,7 @@ public class AppointmentController {
         }
         return listaDTO;
     }
-
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/cantidadCitas")
     public List<AppointmentCountDTO> AppointmentCountDTO(@RequestParam String date1, @RequestParam String date2){
         List<String[]> filaLista = aS.cantidadCitasPeriodo(date1,date2);
