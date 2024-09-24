@@ -9,6 +9,7 @@ public class AppointmentCountDTO {
         return idUser;
     }
 
+
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
