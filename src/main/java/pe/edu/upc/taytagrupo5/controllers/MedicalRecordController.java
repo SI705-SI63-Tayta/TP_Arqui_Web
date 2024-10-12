@@ -26,6 +26,12 @@ public class MedicalRecordController {
     }
 
 
+    @GetMapping("/{id}")
+    public MedicalRecordDTO getById(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        MedicalRecordDTO dto= m.map(ms.listById(id), MedicalRecordDTO.class);
+        return dto;
+    }
     @GetMapping
     public List<MedicalRecordDTO> listar(){
         return ms.list().stream().map(x->{

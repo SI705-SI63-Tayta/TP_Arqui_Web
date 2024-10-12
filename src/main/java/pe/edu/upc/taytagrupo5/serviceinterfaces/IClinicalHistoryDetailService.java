@@ -14,6 +14,8 @@ public interface IClinicalHistoryDetailService {
 
     public void delete(int id_detalle_historia);
 
+    public ClinicalHistoryDetail findById(int idDetalleHistoria);
+
     public List<ClinicalHistoryDetail> list();
 
     public List<String[]> findByDNI(String dni);

@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.taytagrupo5.dtos.ListUserDTO;
 import pe.edu.upc.taytagrupo5.dtos.QuantityUsersPerDatesDTO;
 import pe.edu.upc.taytagrupo5.dtos.UserDTO;
 import pe.edu.upc.taytagrupo5.entities.User;
@@ -33,20 +34,22 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDTO> listar(){
+    public List<ListUserDTO> listar(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x, UserDTO.class);
+            return m.map(x, ListUserDTO.class);
         }).collect(Collectors.toList());
     }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         uS.delete(id);
     }
+
     @GetMapping("/{id}")
-    public UserDTO listarId(@PathVariable("id") Integer id) {
+    public ListUserDTO listarId(@PathVariable("id") int id) {
         ModelMapper m=new ModelMapper();
-        UserDTO dto=m.map(uS.listId(id),UserDTO.class);
+        ListUserDTO dto=m.map(uS.listId(id),ListUserDTO.class);
         return dto;
     }
     @PutMapping

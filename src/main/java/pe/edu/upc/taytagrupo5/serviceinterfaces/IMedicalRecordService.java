@@ -10,4 +10,5 @@ public interface IMedicalRecordService {
     public List<MedicalRecord> list();
     public void delete(int idMedicalRecord);
     public void update(MedicalRecord medicalRecord);
+    public MedicalRecord listById(int idMedicalRecord);
 }

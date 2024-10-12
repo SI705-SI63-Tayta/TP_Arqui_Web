@@ -31,6 +31,11 @@ public class ClinicalHistoryDetailServiceImplement implements IClinicalHistoryDe
     }
 
     @Override
+    public ClinicalHistoryDetail findById(int idDetalleHistoria) {
+        return cHD.findById(idDetalleHistoria).orElse(new ClinicalHistoryDetail());
+    }
+
+    @Override
     public List<ClinicalHistoryDetail> list() {
         return cHD.findAll();
     }

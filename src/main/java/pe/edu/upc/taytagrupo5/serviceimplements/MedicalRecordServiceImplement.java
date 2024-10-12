@@ -33,4 +33,9 @@ public class MedicalRecordServiceImplement implements IMedicalRecordService {
     public void update(MedicalRecord medicalRecord) {
         mR.save(medicalRecord);
     }
+
+    @Override
+    public MedicalRecord listById(int idMedicalRecord) {
+        return mR.findById(idMedicalRecord).orElse(new MedicalRecord());
+    }
 }

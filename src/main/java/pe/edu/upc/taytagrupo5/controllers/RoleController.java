@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/Roles")
 public class RoleController {
+
    @Autowired
    private IRoleServices rs;
 
@@ -34,6 +35,12 @@ public class RoleController {
 
    }
 
+   @GetMapping("/{id}")
+   public RoleDTO getById(@PathVariable("id") int id){
+       ModelMapper m = new ModelMapper();
+       RoleDTO dto=m.map(rs.lisById(id), RoleDTO.class);
+       return dto;
+   }
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         rs.delete(id);

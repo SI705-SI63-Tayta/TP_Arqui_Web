@@ -30,6 +30,14 @@ public class ClinicalHistoryDetailController {
         hDS.insert(d);
     }
 
+    @GetMapping("/{id}")
+    public ClinicalHistoryDetailDTO getById(@PathVariable("id") int id) {
+        ModelMapper m = new ModelMapper();
+        ClinicalHistoryDetailDTO dto=m.map(hDS.findById(id), ClinicalHistoryDetailDTO.class);
+        return dto;
+    }
+
+
     @GetMapping
     public List<ClinicalHistoryDetailDTO> listar() {
         return hDS.list().stream().map(x -> {

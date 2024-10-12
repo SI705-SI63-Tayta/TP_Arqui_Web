@@ -14,6 +14,8 @@ public interface IRoleServices {
 
     public void update(Role idRole);
 
+    public Role lisById(int idRole);
+
     public List<String[]> quantityUserPerRol();
 
 

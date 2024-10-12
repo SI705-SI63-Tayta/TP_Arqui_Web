@@ -38,6 +38,11 @@ public class RoleServiceImplement implements IRoleServices {
     }
 
     @Override
+    public Role lisById(int idRole) {
+        return rR.findById(idRole).orElse(new Role());
+    }
+
+    @Override
     public List<String[]> quantityUserPerRol() {
        return rR.quantityUserPerRol();
     }
