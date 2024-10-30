@@ -16,6 +16,10 @@ public class AppointmentDTO {
 
     private String description;
 
+    private String latitude;
+
+    private String longitude;
+
     private User userCliente;
 
     private User userPersonal;
@@ -58,6 +62,22 @@ public class AppointmentDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public User getUserCliente() {

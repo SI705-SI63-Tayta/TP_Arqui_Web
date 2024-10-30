@@ -1,6 +1,7 @@
 package pe.edu.upc.taytagrupo5.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.QuantityUserPerRolDTO;
 import pe.edu.upc.taytagrupo5.dtos.RoleDTO;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Roles")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RoleController {
 
    @Autowired

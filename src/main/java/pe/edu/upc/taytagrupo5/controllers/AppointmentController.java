@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.*;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/citas")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class AppointmentController {
 
     @Autowired
@@ -27,7 +29,7 @@ public class AppointmentController {
             return m.map(x,AppointmentDTO.class);
         }).collect(Collectors.toList());
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
     @PostMapping
     public void insert(@RequestBody AppointmentDTO dto){
         ModelMapper m = new ModelMapper();

@@ -19,5 +19,4 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     public List<String[]> listarfecha(@Param("date1") LocalDate date1, @Param("date2") LocalDate date2);
 
     public User findByUsername(String username);
-
 }

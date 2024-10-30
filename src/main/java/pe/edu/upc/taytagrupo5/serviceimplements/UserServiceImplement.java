@@ -42,4 +42,9 @@ public class UserServiceImplement implements IUserService {
     public List<String[]> listarfecha(LocalDate date1, LocalDate date2) {
         return uR.listarfecha(date1, date2);
     }
+
+    @Override
+    public User findUsername(String username) {
+        return uR.findByUsername(username);
+    }
 }

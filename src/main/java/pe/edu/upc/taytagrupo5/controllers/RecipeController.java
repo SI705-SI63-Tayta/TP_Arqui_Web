@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.QuantityRecipesFinishedPerClientDTO;
@@ -15,9 +16,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/recipes")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RecipeController {
     @Autowired
     private IRecipeService rs;
+
 
     @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @PostMapping

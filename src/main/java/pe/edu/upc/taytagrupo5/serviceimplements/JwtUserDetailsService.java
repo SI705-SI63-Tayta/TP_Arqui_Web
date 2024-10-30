@@ -37,4 +37,8 @@ public class JwtUserDetailsService implements UserDetailsService {
         return ud;
     }
 
+    public User getUserByUsername(String username) {
+        return uR.findByUsername(username);
+    }
+
 }

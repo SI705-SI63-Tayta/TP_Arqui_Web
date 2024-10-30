@@ -13,4 +13,5 @@ public interface IUserService {
     public User listId(int idUser);
     public void update(User u);
     public List<String[]> listarfecha(LocalDate date1, LocalDate date2);
+    public User findUsername(String username);
 }

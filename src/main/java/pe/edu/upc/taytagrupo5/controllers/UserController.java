@@ -2,6 +2,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.ListUserDTO;
@@ -17,12 +18,15 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Users")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class UserController {
     @Autowired
     private IUserService uS;
 
+
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
     @PostMapping
     public void registrar(@RequestBody UserDTO dto) {
@@ -34,10 +38,10 @@ public class UserController {
     }
 
     @GetMapping
-    public List<ListUserDTO> listar(){
+    public List<UserDTO> listar(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x, ListUserDTO.class);
+            return m.map(x, UserDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -47,9 +51,9 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ListUserDTO listarId(@PathVariable("id") int id) {
+    public UserDTO listarId(@PathVariable("id") int id) {
         ModelMapper m=new ModelMapper();
-        ListUserDTO dto=m.map(uS.listId(id),ListUserDTO.class);
+        UserDTO dto=m.map(uS.listId(id),UserDTO.class);
         return dto;
     }
     @PutMapping
@@ -72,5 +76,14 @@ public class UserController {
             listaDTO.add(dto);
         }
         return listaDTO;
+    }
+
+    //AGREGAR ESTO A EL ARCHIVO CON SECURITY
+
+    @GetMapping("/nombreusuario")
+    public UserDTO findUser(@RequestParam String username){
+        ModelMapper m = new ModelMapper();
+        UserDTO dto = m.map(uS.findUsername(username), UserDTO.class);
+        return dto;
     }
 }

@@ -23,9 +23,16 @@ public class Appointment {
     @Column(name = "description", nullable = false, length = 255)
     private String description;
 
+    @Column(name = "latitude", nullable = true)
+    private String latitude;
+
+    @Column(name = "longitude", nullable = true)
+    private String longitude;
+
     @ManyToOne
     @JoinColumn(name = "idCliente")
     private User userCliente;
+
 
     @ManyToOne
     @JoinColumn(name = "idPersonal")
@@ -34,12 +41,14 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int idAppointment, LocalDate date, String reason, String mode, String description, User userCliente, User userPersonal) {
+    public Appointment(int idAppointment, LocalDate date, String reason, String mode, String description, String latitude, String longitude, User userCliente, User userPersonal) {
         this.idAppointment = idAppointment;
         this.date = date;
         this.reason = reason;
         this.mode = mode;
         this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.userCliente = userCliente;
         this.userPersonal = userPersonal;
     }
@@ -82,6 +91,22 @@ public class Appointment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public User getUserCliente() {

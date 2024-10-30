@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pe.edu.upc.taytagrupo5.entities.User;
 import pe.edu.upc.taytagrupo5.securities.JwtRequest;
 import pe.edu.upc.taytagrupo5.securities.JwtResponse;
 import pe.edu.upc.taytagrupo5.securities.JwtTokenUtil;
@@ -19,7 +20,7 @@ import pe.edu.upc.taytagrupo5.serviceimplements.JwtUserDetailsService;
 
 //Clase 3
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -33,7 +34,8 @@ public class JwtAuthenticationController {
     public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest req) throws Exception {
         authenticate(req.getUsername(), req.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(req.getUsername());
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        final User user = userDetailsService.getUserByUsername(req.getUsername());
+        final String token = jwtTokenUtil.generateToken(userDetails,user.getIdUser());
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
