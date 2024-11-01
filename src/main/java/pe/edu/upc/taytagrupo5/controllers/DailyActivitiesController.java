@@ -35,19 +35,20 @@ public class DailyActivitiesController {
             return m.map(x, DailyActivitiesDTO.class);
         }).collect(Collectors.toList());
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('CLIENTE')")
     @PutMapping
     public void update(@RequestBody DailyActivitiesDTO dto) {
         ModelMapper m = new ModelMapper();
         DailyActivities d = m.map(dto, DailyActivities.class);
         dS.update(d);
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+
+    @PreAuthorize("hasAnyAuthority('CLIENTE')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         dS.delete(id);
     }
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('CLIENTE')")
     @GetMapping("/{id}")
     public DailyActivitiesDTO getById(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();

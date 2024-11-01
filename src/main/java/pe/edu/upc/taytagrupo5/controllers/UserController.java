@@ -3,6 +3,7 @@ package pe.edu.upc.taytagrupo5.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.ListUserDTO;
@@ -86,4 +87,11 @@ public class UserController {
         UserDTO dto = m.map(uS.findUsername(username), UserDTO.class);
         return dto;
     }
+
+    @GetMapping("/")
+    public ResponseEntity<Boolean> usuarioExiste(@RequestParam String username){
+        boolean exists = uS.existsUser(username);
+        return ResponseEntity.ok(exists);
+    }
+
 }

@@ -36,7 +36,7 @@ public class AppointmentController {
         Appointment a = m.map(dto, Appointment.class);
         aS.insert(a);
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
     @GetMapping("/{id}")
     public AppointmentDTO getById(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();

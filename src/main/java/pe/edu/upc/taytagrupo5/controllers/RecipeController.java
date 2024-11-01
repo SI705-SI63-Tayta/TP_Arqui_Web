@@ -51,6 +51,7 @@ public class RecipeController {
     public void eliminar(@PathVariable("id") Integer id) {
         rs.delete(id);
     }
+
     @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
     @GetMapping("/{id}")
     public RecipeDTO listarId(@PathVariable("id") Integer id) {

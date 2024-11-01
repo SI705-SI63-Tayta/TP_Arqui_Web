@@ -47,4 +47,9 @@ public class UserServiceImplement implements IUserService {
     public User findUsername(String username) {
         return uR.findByUsername(username);
     }
+
+    @Override
+    public Boolean existsUser(String username) {
+        return uR.existsByUsername(username);
+    }
 }
