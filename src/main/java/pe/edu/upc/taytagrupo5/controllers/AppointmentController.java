@@ -43,7 +43,7 @@ public class AppointmentController {
         AppointmentDTO dto = m.map(aS.listById(id), AppointmentDTO.class);
         return dto;
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         aS.deleteById(id);

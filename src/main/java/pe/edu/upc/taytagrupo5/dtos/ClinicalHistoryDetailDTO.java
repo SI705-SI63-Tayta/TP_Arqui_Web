@@ -4,7 +4,7 @@ import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.entities.MedicalRecord;
 import pe.edu.upc.taytagrupo5.entities.Recipe;
 
-public class ClinicalHistoryDetailDTO {
+public class    ClinicalHistoryDetailDTO {
 
     private int idDetalleHistoria;
 

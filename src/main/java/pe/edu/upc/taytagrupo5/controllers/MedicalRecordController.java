@@ -20,7 +20,7 @@ public class MedicalRecordController {
     @Autowired
     private IMedicalRecordService ms;
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PostMapping
     public void registrar(@RequestBody MedicalRecordDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -42,12 +42,12 @@ public class MedicalRecordController {
             return m.map(x,MedicalRecordDTO.class);
         }).collect(Collectors.toList());
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         ms.delete(id);
     }
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PutMapping
     public void modificar(@RequestBody MedicalRecordDTO dto) {
         ModelMapper m = new ModelMapper();

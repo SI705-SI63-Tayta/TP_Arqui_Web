@@ -22,7 +22,7 @@ public class RecipeController {
     private IRecipeService rs;
 
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PostMapping
     public void registrar(@RequestBody RecipeDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -38,7 +38,7 @@ public class RecipeController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PutMapping
     public void modificar(@RequestBody RecipeDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -46,20 +46,20 @@ public class RecipeController {
         rs.update(d);
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id) {
         rs.delete(id);
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/{id}")
     public RecipeDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
         RecipeDTO dto=m.map(rs.listId(id), RecipeDTO.class);
         return dto;
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/recetasFinalizadas")
     public List<QuantityRecipesFinishedPerClientDTO>recipesFinishedPerClient(){
         List<String[]>lista= rs.recipesFinishedPerClient();

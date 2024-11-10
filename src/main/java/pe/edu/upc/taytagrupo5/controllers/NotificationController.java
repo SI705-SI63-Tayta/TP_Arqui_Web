@@ -22,11 +22,13 @@ public class NotificationController {
     private INotificationService nS;
 
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PostMapping
     public void insert(@RequestBody NotificationDTO dto) {
+        System.out.println(dto.getRecipes());
         ModelMapper m = new ModelMapper();
         Notification d = m.map(dto, Notification.class);
+        System.out.println(d.getRecipes());
         nS.insert(d);
     }
 
@@ -37,14 +39,14 @@ public class NotificationController {
             return m.map(x, NotificationDTO.class);
         }).collect(Collectors.toList());
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PutMapping
     public void update(@RequestBody NotificationDTO dto) {
         ModelMapper m = new ModelMapper();
         Notification d = m.map(dto, Notification.class);
         nS.update(d);
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         nS.delete(id);

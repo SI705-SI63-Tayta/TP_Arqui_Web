@@ -61,7 +61,7 @@ public class ReviewController {
         Review r = m.map(dto, Review.class);
         rS.update(r);
     }
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/calificacionmayor3")
     public List<ReviewListDTO> listarcalificacionmayor3(){
         List<String[]>lista=rS.listarcalificacionmayor3();
@@ -78,7 +78,7 @@ public class ReviewController {
         }
         return listaDTO;
     }
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/top5Personal")
     public List<Top5PersonalDTO>top5CalificacionPersonal(){
         List<String[]>lista=rS.top5CalificacionPersonal();

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.ListUserDTO;
+import pe.edu.upc.taytagrupo5.dtos.PasswordChangeDTO;
 import pe.edu.upc.taytagrupo5.dtos.QuantityUsersPerDatesDTO;
 import pe.edu.upc.taytagrupo5.dtos.UserDTO;
 import pe.edu.upc.taytagrupo5.entities.User;
@@ -93,5 +94,34 @@ public class UserController {
         boolean exists = uS.existsUser(username);
         return ResponseEntity.ok(exists);
     }
+
+    @PutMapping("/update-with-password")
+    public ResponseEntity<?> updateUserWithPassword(@RequestBody PasswordChangeDTO dto) {
+        ModelMapper m = new ModelMapper();
+        User user = uS.listId(dto.getIdUser());
+
+        // Verificar la contraseña actual
+        if (!passwordEncoder.matches(dto.getCurrentPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("La contraseña actual no es correcta.");
+        }
+
+        // Si la contraseña actual coincide, actualizamos los datos
+        user.setFullName(dto.getFullName());
+        user.setEmail(dto.getEmail());
+        user.setUsername(dto.getUsername());
+        user.setAddress(dto.getAddress());
+        user.setDni(dto.getDni());
+
+        // Si hay una nueva contraseña, la encriptamos y la establecemos
+        if (dto.getNewPassword() != null && !dto.getNewPassword().isEmpty()) {
+            String encodedNewPassword = passwordEncoder.encode(dto.getNewPassword());
+            user.setPassword(encodedNewPassword);
+        }
+
+        uS.update(user);
+        return ResponseEntity.status(HttpStatus.OK).body(true);
+    }
+
+
 
 }
