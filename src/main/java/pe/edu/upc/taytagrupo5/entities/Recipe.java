@@ -12,7 +12,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipe;
 
-    @Column(name = "description", nullable = false,length = 100)
+    @Column(name = "description", nullable = false,length = 500)
     private String description;
 
     @Column(name = "start_date", nullable = false)

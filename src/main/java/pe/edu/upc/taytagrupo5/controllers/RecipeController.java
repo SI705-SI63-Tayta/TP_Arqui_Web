@@ -3,10 +3,12 @@ package pe.edu.upc.taytagrupo5.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.QuantityRecipesFinishedPerClientDTO;
 import pe.edu.upc.taytagrupo5.dtos.RecipeDTO;
+import pe.edu.upc.taytagrupo5.entities.Appointment;
 import pe.edu.upc.taytagrupo5.entities.Recipe;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IRecipeService;
 
@@ -24,11 +26,17 @@ public class RecipeController {
 
     @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PostMapping
-    public void registrar(@RequestBody RecipeDTO dto) {
+    public ResponseEntity<RecipeDTO> registrar(@RequestBody RecipeDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recipe d = m.map(dto, Recipe.class);
-        rs.insert(d);
+        Recipe r = m.map(dto, Recipe.class);
+        Recipe savedRecipe = rs.insert(r);
+
+        RecipeDTO savedRecipeDTO = m.map(savedRecipe, RecipeDTO.class);
+
+        return new ResponseEntity<>(savedRecipeDTO, HttpStatus.CREATED);
     }
+
+
 
     @GetMapping
     public List<RecipeDTO> listar(){
@@ -52,7 +60,7 @@ public class RecipeController {
         rs.delete(id);
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR','CLIENTE')")
     @GetMapping("/{id}")
     public RecipeDTO listarId(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();

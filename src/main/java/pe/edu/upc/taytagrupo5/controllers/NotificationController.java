@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.taytagrupo5.dtos.NotificationDTO;
+import pe.edu.upc.taytagrupo5.entities.MedicalRecord;
 import pe.edu.upc.taytagrupo5.entities.Notification;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.INotificationService;
 
@@ -25,11 +26,9 @@ public class NotificationController {
     @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @PostMapping
     public void insert(@RequestBody NotificationDTO dto) {
-        System.out.println(dto.getRecipes());
         ModelMapper m = new ModelMapper();
-        Notification d = m.map(dto, Notification.class);
-        System.out.println(d.getRecipes());
-        nS.insert(d);
+        Notification n = m.map(dto, Notification.class);
+        nS.insert(n);
     }
 
     @GetMapping
