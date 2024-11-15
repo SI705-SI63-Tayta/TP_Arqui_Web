@@ -52,4 +52,9 @@ public class UserServiceImplement implements IUserService {
     public Boolean existsUser(String username) {
         return uR.existsByUsername(username);
     }
+
+    @Override
+    public Boolean existsDni(String dni) {
+        return uR.existsByDni(dni);
+    }
 }

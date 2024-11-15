@@ -89,9 +89,15 @@ public class UserController {
         return dto;
     }
 
-    @GetMapping("/")
+    @GetMapping("/findusername")
     public ResponseEntity<Boolean> usuarioExiste(@RequestParam String username){
         boolean exists = uS.existsUser(username);
+        return ResponseEntity.ok(exists);
+    }
+
+    @GetMapping("/finddni")
+    public ResponseEntity<Boolean> dniExiste(@RequestParam String dni){
+        boolean exists = uS.existsDni(dni);
         return ResponseEntity.ok(exists);
     }
 

@@ -13,7 +13,7 @@ public interface IReviewRepository extends JpaRepository<Review, Integer> {
      public List<String[]> listarcalificacionmayor3() ;
 
      @Query(value ="select u.full_name,avg(re.score) as promedio from reviews re inner join users u on u.id_user= re.id_personal \n" +
-             " inner join rol r on r.id_rol=u.id_rol where (r.id_rol=2 or r.id_rol=3) \n" +
+             " inner join rol r on r.id_rol=u.id_rol where (r.tipo_rol='ENFERMERO' or r.tipo_rol='DOCTOR') \n" +
              " group by u.full_name \n" +
              " order by promedio desc \n" +
              " limit 5" ,nativeQuery = true)

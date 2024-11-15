@@ -46,7 +46,7 @@ public class RecipeController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR','CLIENTE')")
     @PutMapping
     public void modificar(@RequestBody RecipeDTO dto) {
         ModelMapper m = new ModelMapper();

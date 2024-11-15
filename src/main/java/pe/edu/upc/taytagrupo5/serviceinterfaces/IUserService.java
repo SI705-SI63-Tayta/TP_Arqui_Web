@@ -15,4 +15,5 @@ public interface IUserService {
     public List<String[]> listarfecha(LocalDate date1, LocalDate date2);
     public User findUsername(String username);
     public Boolean existsUser(String username);
+    public Boolean existsDni(String dni);
 }
