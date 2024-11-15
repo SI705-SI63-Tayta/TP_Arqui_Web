@@ -1,17 +1,16 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 public class AppointmentCountDTO {
-    private int idUser;
+    private String dni;
     private String fullName;
     private int cantidad;
 
-    public int getIdUser() {
-        return idUser;
+    public String getDni() {
+        return dni;
     }
 
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getFullName() {

@@ -66,7 +66,7 @@ public class AppointmentController {
         aS.update(a);
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/cantidadModoCitas")
     public List<AppointmentModeDTO> cantidadmodo() {
         List<String[]> lista=aS.cantidadModalidadesCitas();
@@ -110,14 +110,14 @@ public class AppointmentController {
         return listaDTO;
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/cantidadCitas")
     public List<AppointmentCountDTO> AppointmentCountDTO(@RequestParam String date1, @RequestParam String date2){
         List<String[]> filaLista = aS.cantidadCitasPeriodo(date1,date2);
         List<AppointmentCountDTO> dtoLista = new ArrayList<>();
         for (String[] columna : filaLista) {
             AppointmentCountDTO dto = new AppointmentCountDTO();
-            dto.setIdUser(Integer.parseInt(columna[0]));
+            dto.setDni(columna[0]);
             dto.setFullName(columna[1]);
             dto.setCantidad(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
