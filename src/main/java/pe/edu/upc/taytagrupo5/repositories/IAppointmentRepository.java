@@ -37,8 +37,8 @@ public interface IAppointmentRepository extends JpaRepository<Appointment, Integ
             "        r.tipo_rol = 'DOCTOR'\n" +
             "    )\n" +
             "AND \n" +
-            "    p.full_name LIKE :personal", nativeQuery = true)
-    public List<String[]> listarPacientesPorPersonal(@Param("personal") String personal);
+            "    p.id_user =:personal", nativeQuery = true)
+    public List<String[]> listarPacientesPorPersonal(@Param("personal") Integer personal);
 
     @Query(value = "SELECT c.full_name\n" +
             " FROM appointments ap\n" +

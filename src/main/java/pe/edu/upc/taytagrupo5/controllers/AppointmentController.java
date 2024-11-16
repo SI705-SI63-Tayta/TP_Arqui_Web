@@ -31,7 +31,7 @@ public class AppointmentController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE','ADMINISTRADOR')")
     @PostMapping
     public void insert(@RequestBody AppointmentDTO dto){
         ModelMapper m = new ModelMapper();
@@ -39,7 +39,7 @@ public class AppointmentController {
         aS.insert(a);
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE','ADMINISTRADOR')")
     @GetMapping("/{id}")
     public AppointmentDTO getById(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
@@ -47,7 +47,7 @@ public class AppointmentController {
         return dto;
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE','ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") int id) {
         try {
@@ -80,9 +80,9 @@ public class AppointmentController {
         return listaDTO;
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/ListarPacientesPorPersonal")
-    public List<ListPatientsByStaffDTO> listPatientsByStaff(@RequestParam String personal){
+    public List<ListPatientsByStaffDTO> listPatientsByStaff(@RequestParam int personal){
         List<String[]> lista2=aS.listarPacientesPorPersonal(personal);
         List<ListPatientsByStaffDTO> listaDTO=new ArrayList<>();
 
@@ -96,10 +96,10 @@ public class AppointmentController {
         return listaDTO;
     }
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/ListarPacientesPorFecha")
-    public List<ListPatientsByDateDTO> listPatientsByDate(@RequestParam String date){
-        List<String[]> lista3=aS.listarPacientesPorFecha(date);
+    public List<ListPatientsByDateDTO> listPatientsByDate(@RequestParam String fecha){
+        List<String[]> lista3=aS.listarPacientesPorFecha(fecha);
         List<ListPatientsByDateDTO> listaDTO=new ArrayList<>();
 
         for(String[] c:lista3){

@@ -52,7 +52,7 @@ public class AppointmentServiceImplement implements IAppointmentService {
     }
 
     @Override
-    public List<String[]> listarPacientesPorPersonal(String personal) {
+    public List<String[]> listarPacientesPorPersonal(int personal) {
         return aR.listarPacientesPorPersonal(personal);
     }
 

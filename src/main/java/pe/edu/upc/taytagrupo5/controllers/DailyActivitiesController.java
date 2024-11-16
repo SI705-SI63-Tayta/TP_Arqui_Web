@@ -20,7 +20,7 @@ public class DailyActivitiesController {
     private IDailyActivitiesService dS;
 
 
-    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','CLIENTE','ADMINISTRADOR')")
     @PostMapping
     public void insert(@RequestBody DailyActivitiesDTO dto){
         ModelMapper m = new ModelMapper();
@@ -35,7 +35,7 @@ public class DailyActivitiesController {
             return m.map(x, DailyActivitiesDTO.class);
         }).collect(Collectors.toList());
     }
-    @PreAuthorize("hasAnyAuthority('CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('CLIENTE','ADMINISTRADOR')")
     @PutMapping
     public void update(@RequestBody DailyActivitiesDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -43,12 +43,12 @@ public class DailyActivitiesController {
         dS.update(d);
     }
 
-    @PreAuthorize("hasAnyAuthority('CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('CLIENTE','ADMINISTRADOR')")
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") int id) {
         dS.delete(id);
     }
-    @PreAuthorize("hasAnyAuthority('CLIENTE')")
+    @PreAuthorize("hasAnyAuthority('CLIENTE','ADMINISTRADOR')")
     @GetMapping("/{id}")
     public DailyActivitiesDTO getById(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();

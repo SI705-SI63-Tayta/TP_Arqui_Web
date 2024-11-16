@@ -12,6 +12,6 @@ public interface IAppointmentService {
     public void deleteById(int id);
     public List<String[]> cantidadModalidadesCitas();
     public List<String[]> cantidadCitasPeriodo(String date1, String date2);
-    public List<String[]> listarPacientesPorPersonal(String personal);
+    public List<String[]> listarPacientesPorPersonal(int personal);
     public List<String[]> listarPacientesPorFecha(String fecha);
 }
