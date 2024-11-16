@@ -38,4 +38,11 @@ public class MedicalRecordServiceImplement implements IMedicalRecordService {
     public MedicalRecord listById(int idMedicalRecord) {
         return mR.findById(idMedicalRecord).orElse(new MedicalRecord());
     }
+
+
+    @Override
+    public List<Object[]> findUserRecordsWithinDateRange(String date1, String date2) {
+        return mR.findUserRecordsWithinDateRange(date1,date2);
+    }
+
 }
