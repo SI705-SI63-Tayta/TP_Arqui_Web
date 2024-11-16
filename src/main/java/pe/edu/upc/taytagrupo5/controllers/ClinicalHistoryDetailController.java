@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("Detalle_historiaclinica")
-@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR')")
+@PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class ClinicalHistoryDetailController {
 

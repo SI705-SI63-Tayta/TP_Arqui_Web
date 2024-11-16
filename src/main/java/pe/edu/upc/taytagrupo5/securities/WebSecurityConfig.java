@@ -64,6 +64,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(antMatcher("/login")).permitAll()
                         .requestMatchers(antMatcher("/Users")).permitAll()
+                        .requestMatchers(antMatcher("/Users/")).permitAll()
                         .requestMatchers(antMatcher("/Users/*")).permitAll()
                         .requestMatchers(antMatcher("/Roles")).permitAll()
                         .requestMatchers(antMatcher("/Roles/*")).permitAll()
