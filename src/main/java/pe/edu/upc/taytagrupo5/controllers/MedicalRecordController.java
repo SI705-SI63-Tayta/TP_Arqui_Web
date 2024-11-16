@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import pe.edu.upc.taytagrupo5.dtos.AppointmentCountDTO;
 import pe.edu.upc.taytagrupo5.dtos.MedicalRecordDTO;
 import pe.edu.upc.taytagrupo5.dtos.MedicalRecordDateDTO;
@@ -13,10 +12,6 @@ import pe.edu.upc.taytagrupo5.entities.MedicalRecord;
 import pe.edu.upc.taytagrupo5.serviceinterfaces.IMedicalRecordService;
 
 import java.util.ArrayList;
-import pe.edu.upc.taytagrupo5.dtos.MedicalRecordDTO;
-import pe.edu.upc.taytagrupo5.entities.MedicalRecord;
-import pe.edu.upc.taytagrupo5.serviceinterfaces.IMedicalRecordService;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,11 +64,12 @@ public class MedicalRecordController {
         List<MedicalRecordDateDTO> dtoLista = new ArrayList<>();
         for (Object[] columna : filaLista) {
             MedicalRecordDateDTO dto = new MedicalRecordDateDTO();
-            dto.setIdMedicalRecord(Integer.parseInt((String) columna[0]));
+            dto.setIdUser((Integer.parseInt((String) columna[0])));
+            dto.setFullName((String) columna[1]);
+            dto.setDateMedicalRecord((String) columna[2]);
             dtoLista.add(dto);
         }
         return dtoLista;
     }
-
 
 }
