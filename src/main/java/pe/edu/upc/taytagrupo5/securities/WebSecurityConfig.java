@@ -21,10 +21,13 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
+//@Profile(value = {"development", "production"})
+//Clase S7
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfig {
+
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -32,7 +35,7 @@ public class WebSecurityConfig {
     private UserDetailsService jwtUserDetailsService;
 
     @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private JwtRequestFilter  jwtRequestFilter;
 
     @Autowired
     @Qualifier("handlerExceptionResolver")
@@ -61,7 +64,11 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(antMatcher("/login")).permitAll()
                         .requestMatchers(antMatcher("/Users")).permitAll()
+                        .requestMatchers(antMatcher("/Users/")).permitAll()
+                        .requestMatchers(antMatcher("/Users/*")).permitAll()
                         .requestMatchers(antMatcher("/Roles")).permitAll()
+                        .requestMatchers(antMatcher("/Roles/*")).permitAll()
+                        .requestMatchers(antMatcher("/citas/*")).permitAll()
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -72,6 +79,7 @@ public class WebSecurityConfig {
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
+
     private static final String[] AUTH_WHITELIST={
             "/api/v1/auth/**",
             "/v3/api-docs/**",
@@ -79,5 +87,4 @@ public class WebSecurityConfig {
             "/swagger-ui/**",
             "/swagger-ui.html"
     };
-
 }

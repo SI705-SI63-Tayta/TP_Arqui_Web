@@ -16,8 +16,10 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+//Clase 1
 @Component
 public class JwtTokenUtil implements Serializable {
+
     private static final long serialVersionUID = -2550185165626007488L;
 
     //milisegundos || 18 minutos, le quitamos mil 18 segundos demo
@@ -43,7 +45,7 @@ public class JwtTokenUtil implements Serializable {
 
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(secret).build().parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired
@@ -53,9 +55,10 @@ public class JwtTokenUtil implements Serializable {
     }
 
     //generate token for user
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails,Integer userId) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("nombre", "grupo2");
+        claims.put("username", userDetails.getUsername());
+        claims.put("id", userId);
         claims.put("role", userDetails.getAuthorities().stream().map(r -> r.getAuthority()).collect(Collectors.joining()));
         return doGenerateToken(claims, userDetails.getUsername());
     }

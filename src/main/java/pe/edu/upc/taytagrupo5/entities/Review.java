@@ -16,13 +16,23 @@ public class Review {
     @Column(name = "comment", nullable = false, length = 50)
     private String commentReview;
 
+    @ManyToOne
+    @JoinColumn(name = "idCliente")
+    private User userCliente;
+
+    @ManyToOne
+    @JoinColumn(name = "idPersonal")
+    private User userPersonal;
+
     public Review() {
     }
 
-    public Review(int idReview, int scoreReview, String commentReview) {
+    public Review(int idReview, int scoreReview, String commentReview, User userCliente, User userPersonal) {
         this.idReview = idReview;
         this.scoreReview = scoreReview;
         this.commentReview = commentReview;
+        this.userCliente = userCliente;
+        this.userPersonal = userPersonal;
     }
 
     public int getIdReview() {
@@ -47,5 +57,21 @@ public class Review {
 
     public void setCommentReview(String commentReview) {
         this.commentReview = commentReview;
+    }
+
+    public User getUserCliente() {
+        return userCliente;
+    }
+
+    public void setUserCliente(User userCliente) {
+        this.userCliente = userCliente;
+    }
+
+    public User getUserPersonal() {
+        return userPersonal;
+    }
+
+    public void setUserPersonal(User userPersonal) {
+        this.userPersonal = userPersonal;
     }
 }

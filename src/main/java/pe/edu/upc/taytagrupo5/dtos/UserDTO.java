@@ -1,16 +1,25 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
-import jakarta.persistence.Column;
+import pe.edu.upc.taytagrupo5.entities.Role;
 
 public class UserDTO {
     private int idUser;
-    private String userName;
+
     private String fullName;
+
     private String email;
+
+    private String username;
+
     private String password;
-    private Boolean enabled;
-    private String symptoms;
-    private int dni;
+
+    private boolean enabled;
+
+    private String address;
+
+    private String dni;
+
+    private Role role;
 
     public int getIdUser() {
         return idUser;
@@ -18,14 +27,6 @@ public class UserDTO {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getFullName() {
@@ -44,28 +45,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getSymptoms() {
-        return symptoms;
-    }
-
-    public void setSymptoms(String symptoms) {
-        this.symptoms = symptoms;
-    }
-
-    public int getDni() {
-        return dni;
-    }
-
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -74,5 +59,37 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

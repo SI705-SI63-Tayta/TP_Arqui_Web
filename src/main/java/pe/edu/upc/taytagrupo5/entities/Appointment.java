@@ -2,7 +2,7 @@ package pe.edu.upc.taytagrupo5.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="Appointments")
@@ -12,26 +12,45 @@ public class Appointment {
     private int idAppointment;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "reason", nullable = false, length = 30)
     private String reason;
 
-    @Column(name = "mode", nullable = false, length = 10)
+    @Column(name = "mode", nullable = false, length = 30)
     private String mode;
 
-    @Column(name = "description", nullable = false, length = 50)
+    @Column(name = "description", nullable = false, length = 255)
     private String description;
+
+    @Column(name = "latitude", nullable = true)
+    private Double latitude;
+
+    @Column(name = "longitude", nullable = true)
+    private Double longitude;
+
+    @ManyToOne
+    @JoinColumn(name = "idCliente")
+    private User userCliente;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idPersonal")
+    private User userPersonal;
 
     public Appointment() {
     }
 
-    public Appointment(int idAppointment, Date date, String reason, String mode, String description) {
+    public Appointment(int idAppointment, LocalDate date, String reason, String mode, String description, Double latitude, Double longitude, User userCliente, User userPersonal) {
         this.idAppointment = idAppointment;
         this.date = date;
         this.reason = reason;
         this.mode = mode;
         this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.userCliente = userCliente;
+        this.userPersonal = userPersonal;
     }
 
     public int getIdAppointment() {
@@ -42,11 +61,11 @@ public class Appointment {
         this.idAppointment = idAppointment;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -72,5 +91,37 @@ public class Appointment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public User getUserCliente() {
+        return userCliente;
+    }
+
+    public void setUserCliente(User userCliente) {
+        this.userCliente = userCliente;
+    }
+
+    public User getUserPersonal() {
+        return userPersonal;
+    }
+
+    public void setUserPersonal(User userPersonal) {
+        this.userPersonal = userPersonal;
     }
 }

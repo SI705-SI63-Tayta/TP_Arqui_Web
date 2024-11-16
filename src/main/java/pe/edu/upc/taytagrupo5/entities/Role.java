@@ -3,52 +3,37 @@ package pe.edu.upc.taytagrupo5.entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-
 @Entity
-@Table(name = "Role", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","rol"})})
-public class Role implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "Rol")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRole;
-    @Column(name = "descriptionRole", nullable = false, length = 50)
-    private String descriptionRole;
-    @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
-    private User user;
-    public Role (){
+    private  int idRol;
 
+    @Column(name = "tipoRol", nullable = false, length = 15)
+    private String tipoRol;
+
+    public Role() {
     }
 
-    public Role(Long idRole, String descriptionRole, User user) {
-        this.idRole = idRole;
-        this.descriptionRole = descriptionRole;
-        this.user = user;
+    public Role(int idRol, String tipoRol) {
+        this.idRol = idRol;
+        this.tipoRol = tipoRol;
     }
 
-    public Long getIdRole() {
-        return idRole;
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setIdRole(Long idRole) {
-        this.idRole = idRole;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
-    public String getDescriptionRole() {
-        return descriptionRole;
+    public String getTipoRol() {
+        return tipoRol;
     }
 
-    public void setDescriptionRole(String descriptionRole) {
-        this.descriptionRole = descriptionRole;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setTipoRol(String tipoRol) {
+        this.tipoRol = tipoRol;
     }
 }

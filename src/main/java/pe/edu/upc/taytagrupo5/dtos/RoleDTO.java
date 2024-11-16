@@ -1,23 +1,25 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 public class RoleDTO {
-    private int idRole;
-    private String descriptionRole;
 
-    public int getIdRole() {
-        return idRole;
+    private  int idRol;
+
+    private String tipoRol;
+
+    public int getIdRol() {
+        return idRol;
     }
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
-    public String getDescriptionRole() {
-        return descriptionRole;
+    public String getTipoRol() {
+        return tipoRol;
     }
 
-    public void setDescriptionRole(String descriptionRole) {
-        this.descriptionRole = descriptionRole;
+    public void setTipoRol(String tipoRol) {
+        this.tipoRol = tipoRol;
     }
 
 }

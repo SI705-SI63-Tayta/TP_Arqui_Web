@@ -1,54 +1,71 @@
 package pe.edu.upc.taytagrupo5.controllers;
-
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import pe.edu.upc.taytagrupo5.dtos.QuantityUserPerRolDTO;
 import pe.edu.upc.taytagrupo5.dtos.RoleDTO;
-
 import pe.edu.upc.taytagrupo5.entities.Role;
+import pe.edu.upc.taytagrupo5.serviceinterfaces.IRoleServices;
 
-import pe.edu.upc.taytagrupo5.servicesinterfaces.IRoleService;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequestMapping("/Roles")
 @RestController
+@RequestMapping("/Roles")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RoleController {
-    @Autowired
-    public IRoleService rS;
-    @PostMapping
-    public void registrarRole(@RequestBody RoleDTO role){
-        ModelMapper m=new ModelMapper();
-        Role ro=m.map(role, Role.class);
-        rS.insert(ro);
+
+   @Autowired
+   private IRoleServices rs;
+
+   @PostMapping
+    public void registrar(@RequestBody RoleDTO dto){
+
+       ModelMapper m = new ModelMapper();
+       Role d = m.map(dto, Role.class);
+       rs.insert(d);
+
+   }
+
+   @GetMapping
+    public List<RoleDTO> listar(){
+       return rs.list().stream().map(x->{ModelMapper m=new ModelMapper();
+       return  m.map(x, RoleDTO.class);
+       }).collect(Collectors.toList());
+
+   }
+
+   @GetMapping("/{id}")
+   public RoleDTO getById(@PathVariable("id") int id){
+       ModelMapper m = new ModelMapper();
+       RoleDTO dto=m.map(rs.lisById(id), RoleDTO.class);
+       return dto;
+   }
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id) {
+        rs.delete(id);
     }
 
     @PutMapping
-    public void modificar(@RequestBody RoleDTO role){
-        ModelMapper m=new ModelMapper();
-        Role ro=m.map(role, Role.class);
-        rS.insert(ro);
+    public void modificar(@RequestBody RoleDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Role d = m.map(dto, Role.class);
+        rs.update(d);
     }
-    @GetMapping
-    public List<RoleDTO> listRole (){
-        return rS.list().stream().map(y->{
-            ModelMapper m=new ModelMapper();
-            return m.map(y, RoleDTO.class);
-        }).collect(Collectors.toList());
+
+    @GetMapping("/CantidadUsuariosPorRol")
+    public List<QuantityUserPerRolDTO> quantityUserPerRol(){
+       List<String[]> lista= rs.quantityUserPerRol();
+       List<QuantityUserPerRolDTO> listadto = new ArrayList<>();
+       for(String[] c:lista){
+           QuantityUserPerRolDTO dto=new QuantityUserPerRolDTO();
+           dto.setNombreRol(c[0]);
+           dto.setCantidad(Integer.parseInt(c[1]));
+           listadto.add(dto);
+       }
+       return listadto;
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/{id}")
-    public void eliminacionRol(@PathVariable("id")Integer id){
-        rS.delete(id);
-    }
-    @GetMapping("/{id}")
-    public RoleDTO listadoIdRol(@PathVariable ("id")Integer id){
-        ModelMapper m= new ModelMapper();
-       RoleDTO dto=m.map(rS.listId(id),RoleDTO.class);
-        return dto;
-    }
+
 }

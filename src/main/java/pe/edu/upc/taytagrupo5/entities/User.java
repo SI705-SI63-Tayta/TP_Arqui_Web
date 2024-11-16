@@ -1,66 +1,62 @@
 package pe.edu.upc.taytagrupo5.entities;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-
 @Entity
-@Table(name = "UserT")
-public class User implements Serializable {
+@Table(name="Users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUser;
-    @Column(name = "userName", nullable = false, length = 50)
-    private String userName;
+    private int idUser;
+
     @Column(name = "fullName", nullable = false, length = 50)
     private String fullName;
+
     @Column(name = "email", nullable = false, length = 50)
     private String email;
-    @Column(name = "password", nullable = false, length = 200)
+
+    @Column(name = "username", nullable = false, length = 50)
+    private String username;
+
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
+
     @Column(name = "enabled", nullable = false)
-    private Boolean enabled;
-    @Column(name = "symptoms", nullable = false, length = 200)
-    private String symptoms;
-    @Column(name = "dni", nullable = false)
-    private int dni;
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Role> roles = new ArrayList<>();
+    private boolean enabled;
+
+    @Column(name = "address", nullable = false)
+    private String address;
+
+    @Column(name = "dni", nullable = false, length = 8)
+    private String dni;
+
+    @ManyToOne
+    @JoinColumn(name = "idRol")
+    private Role role;
 
     public User() {
     }
 
-    public User(Long idUser, String userName, String fullName, String email, String password, Boolean enabled, String symptoms, int dni, List<Role> roles) {
+    public User(int idUser, String fullName, String email, String username, String password, boolean enabled, String address, String dni, Role role) {
         this.idUser = idUser;
-        this.userName = userName;
         this.fullName = fullName;
         this.email = email;
+        this.username = username;
         this.password = password;
         this.enabled = enabled;
-        this.symptoms = symptoms;
+        this.address = address;
         this.dni = dni;
-        this.roles = roles;
+        this.role = role;
     }
 
-    public Long getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getFullName() {
@@ -79,6 +75,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -87,36 +91,35 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Boolean getEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
-    public String getSymptoms() {
-        return symptoms;
+    public String getAddress() {
+        return address;
     }
 
-    public void setSymptoms(String symptoms) {
-        this.symptoms = symptoms;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
-
