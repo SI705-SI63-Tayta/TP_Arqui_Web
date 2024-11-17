@@ -65,11 +65,12 @@ public class MedicalRecordController {
     @PreAuthorize("hasAnyAuthority('ENFERMERO','DOCTOR','ADMINISTRADOR')")
     @GetMapping("/fechaCita")
     public List<MedicalRecordDateDTO> MedicalRecordDateDTO(@RequestParam String date1, @RequestParam String date2){
-        List<Object[]> filaLista = ms.findUserRecordsWithinDateRange(date1,date2);
+        List<String[]> filaLista = ms.findUserRecordsWithinDateRange(date1,date2);
         List<MedicalRecordDateDTO> dtoLista = new ArrayList<>();
-        for (Object[] columna : filaLista) {
+        for (String[] columna : filaLista) {
             MedicalRecordDateDTO dto = new MedicalRecordDateDTO();
-            dto.setIdMedicalRecord(Integer.parseInt((String) columna[0]));
+            dto.setDni(columna[0]);
+            dto.setDiagnostico(columna[1]);
             dtoLista.add(dto);
         }
         return dtoLista;

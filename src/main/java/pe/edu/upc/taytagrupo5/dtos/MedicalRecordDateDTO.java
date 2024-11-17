@@ -1,14 +1,23 @@
 package pe.edu.upc.taytagrupo5.dtos;
 
 public class MedicalRecordDateDTO {
-    private int idMedicalRecord;
+    private String  dni;
+    private String diagnostico;
 
-    public int getIdMedicalRecord() {
-        return idMedicalRecord;
+    public String getDni() {
+        return dni;
     }
 
-    public void setIdMedicalRecord(int idMedicalRecord) {
-        this.idMedicalRecord = idMedicalRecord;
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 }
 
