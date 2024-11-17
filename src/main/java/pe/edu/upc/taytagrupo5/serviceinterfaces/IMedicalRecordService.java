@@ -11,7 +11,6 @@ public interface IMedicalRecordService {
     public void delete(int idMedicalRecord);
     public void update(MedicalRecord medicalRecord);
     public MedicalRecord listById(int idMedicalRecord);
-
     public List<String[]> findUserRecordsWithinDateRange(String date1, String date2);
 
 }
